@@ -1,0 +1,39 @@
+<html>
+	<head>
+		<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700" rel="stylesheet">
+		<script type="text/javascript" src="js/three.min.js"></script>
+        <script type="text/javascript" src="js/game.js"></script>
+		<link href="style.css" rel="stylesheet">
+	</head>
+	<body>
+		<div class="panel">
+			<h1>
+				<span class="the">the</span>
+				<span class="title">Kars</span>
+				<span class="byline">Fuel Desperation</span>
+			</h1>
+			<div class="entries">
+				<div class="entry">
+					<label>Time</label>
+					<p id="time" class="time">36</p>
+				</div>
+				<div class="entry">
+					<label>Fuel</label>
+					<div class="status">
+						<div class="fill" id="fuel"></div>
+					</div>
+				</div>
+				<div class="entry">
+					<label>Record</label>
+					<p id="record" class="time">0</p>
+				</div>
+				<div class="entry">
+					<label>Score</label>
+					<p id="score" class="time">36</p>
+				</div>
+			</div>
+			<p class="instructions">Use arrow keys to move. Collect fuel to survive!</p>
+		</div>
+		<div id="world"></div>
+	</body>
+</html>
