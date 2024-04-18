@@ -66,9 +66,16 @@ function init() {
  * Boilerplate for scene, camera, renderer, lights taken from
  * https://tympanus.net/codrops/2016/04/26/the-aviator-animating-basic-3d-scene-threejs/
  */
-var scene,
-		camera, fieldOfView, aspectRatio, nearPlane, farPlane, HEIGHT, WIDTH,
-		renderer, container;
+var scene, 
+    camera, 
+    fieldOfView, 
+    aspectRatio, 
+    nearPlane, 
+    farPlane, 
+    HEIGHT, 
+    WIDTH,	
+    renderer, 
+    container;
 
 function createScene() {
 	// Get the width and the height of the screen,
@@ -186,7 +193,9 @@ function createLights() {
  * -------
  * Definitions and constructors for car, fuel, tree, ground
  */
-var car, fuel, ground, trees = [], collidableTrees = [], numTrees = 10,
+var car, fuel, ground, trees = [], 
+    collidableTrees = [], 
+    numTrees = 10,
     collidableFuels = [];
 
 /**
@@ -382,8 +391,10 @@ function createCar() {
 /**
  * Create simple green, rectangular ground
  */
+
+// Update the size of background
 function createGround() {
-    ground = createBox( 800, 20, 500, Colors.greenDark, 0, -10, 0 );
+    ground = createBox( 900, 20, 500, Colors.greenDark, 0, -10, 0 );
     scene.add(ground);
 }
 
@@ -602,7 +613,6 @@ function get_xywh(object) {  // TODO: annotate
 function createLevel() {
     createFuels();
     createTrees();
-
     startTimer();
 }
 
