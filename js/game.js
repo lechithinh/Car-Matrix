@@ -193,17 +193,34 @@ function createLights() {
  * -------
  * Definitions and constructors for car, fuel, tree, ground
  */
-var car, fuel, ground, trees = [], 
-    collidableTrees = [], 
-    numTrees = 10,
-    collidableFuels = [];
+// var car, fuel, ground, trees = [], boxes = []
+//     collidableTrees = [], 
+//     numTrees = 10,
+//     collidableBoxes = [], 
+//     numBoxes = 10,
+    
+
+var car, fuel, ground, obstacles = [[]], numObstacle = 10, collidableObstacle = [[]],
+collidableFuels = [];
 
 /**
  * Generic box that casts and receives shadows
  */
-function createBox(dx, dy, dz, color, x, y, z, notFlatShading) {
+function createBox(dx, dy, dz, color, x, y, z, notFlatShading,texture_path) {
     var geom = new THREE.BoxGeometry(dx, dy, dz);
-    var mat = new THREE.MeshPhongMaterial({color:color, flatShading: notFlatShading != true});
+    console.log(texture_path)
+    if(texture_path){
+        console.log("hi")
+        var texture = new THREE.TextureLoader().load(texture_path);
+        texture.colorSpace = THREE.SRGBColorSpace;
+        texture.wrapS = THREE.RepeatWrapping;
+        texture.wrapT = THREE.RepeatWrapping;
+        texture.repeat.set( 1, 1 );
+        var mat = new THREE.MeshPhongMaterial({color:color, flatShading: notFlatShading != true, map: texture});
+    }
+    else {
+        var mat = new THREE.MeshPhongMaterial({color:color, flatShading: notFlatShading != true});
+    }
     var box = new THREE.Mesh(geom, mat);
     box.castShadow = true;
     box.receiveShadow = true;
@@ -214,10 +231,19 @@ function createBox(dx, dy, dz, color, x, y, z, notFlatShading) {
 /**
  * Generic cylinder that casts and receives shadows
  */
-function createCylinder(radiusTop, radiusBottom, height, radialSegments, color,
-                        x, y, z) {
-    var geom = new THREE.CylinderGeometry(radiusTop, radiusBottom, height, radialSegments);
-    var mat = new THREE.MeshPhongMaterial({color:color, flatShading: true});
+function createCylinder(radiusTop, radiusBottom, height, radialSegments, color,x, y, z,notFlatShading, open, texture_path) {
+    var geom = new THREE.CylinderGeometry(radiusTop, radiusBottom, height, radialSegments,30,open );
+    if(texture_path){
+        var texture = new THREE.TextureLoader().load(texture_path);
+        texture.colorSpace = THREE.SRGBColorSpace;
+        texture.wrapS = THREE.RepeatWrapping;
+        texture.wrapT = THREE.RepeatWrapping;
+        texture.repeat.set( 1, 1 );
+        var mat = new THREE.MeshPhongMaterial({color:color, flatShading: notFlatShading != true, map: texture});
+    }
+    else{
+        var mat = new THREE.MeshPhongMaterial({color:color, flatShading: true});
+    }
     var cylinder = new THREE.Mesh(geom, mat);
     cylinder.castShadow = true;
     cylinder.receiveShadow = true;
@@ -228,8 +254,8 @@ function createCylinder(radiusTop, radiusBottom, height, radialSegments, color,
 /**
  * Cylinder with rotation specific to car
  */
-function createTire(radiusTop, radiusBottom, height, radialSegments, color, x, y, z) {
-    var cylinder = createCylinder(radiusTop, radiusBottom, height, radialSegments, color, x, y, z);
+function createTire(radiusTop, radiusBottom, height, radialSegments, color, x, y, z, open, texture_path) {
+    var cylinder = createCylinder(radiusTop, radiusBottom, height, radialSegments, color, x, y, z,false,open,texture_path);
     cylinder.rotation.x = Math.PI / 2;  // hardcoded for tires in the car below
     return cylinder;
 }
@@ -323,8 +349,8 @@ function Car() {
         this.mesh.updateMatrixWorld();
 
         // disallow travel through trees
-        if (objectInBound(this.collidable, collidableTrees) && is_moving) {
-            while (objectInBound(this.collidable, collidableTrees)) {
+        if (objectInBound(this.collidable, collidableObstacle[0]) && is_moving) {
+            while (objectInBound(this.collidable, collidableObstacle[0])) {
                 this.mesh.position.addScaledVector(direction, -currentSpeed);
                 this.mesh.updateMatrixWorld();
             }
@@ -423,13 +449,60 @@ function Tree() {
  */
 function createTree(x, z, scale, rotation) {
     var tree = new Tree();
-    trees.push(tree);
+    obstacles[tree_idx].push(tree);
     scene.add(tree.mesh);
     tree.mesh.position.set( x, 0, z );
     tree.mesh.scale.set( scale, scale, scale );
     tree.mesh.rotation.y = rotation;
     return tree;
 }
+
+
+function WoodenBox(){
+    this.mesh = new THREE.Object3D();
+    var texturepath = 'resource/texture/box_texture.png';
+    console.log("path: ",texturepath)
+    var bottom = createBox(30,30,30,Colors.golden,0, 15, 0,false,texturepath);
+
+    this.mesh.add(bottom);
+
+    this.collidable = bottom;
+}
+
+function createWoodenBox(x, z, scale, rotation){
+    var box = new WoodenBox();
+    obstacles[box_idx].push(box);
+    scene.add(box.mesh);
+    box.mesh.position.set(x,0,z);
+    box.mesh.scale.set( scale, scale, scale );
+    box.mesh.rotation.y = rotation;
+    return box;
+}
+
+
+function Tire(){
+    this.mesh = new THREE.Object3D();
+    var texturepath = 'resource/texture/tire_texture.png';
+    console.log("path: ",texturepath)
+    var bottom = createTire(20,20,20,32,Colors.golden,0, 20, 0,true,texturepath);
+    // var frontRightTire = createTire( 10, 10, 10, 32, Colors.brownDark, 20, -12, -15 );
+
+    this.mesh.add(bottom);
+
+    this.collidable = bottom;
+}
+
+function createTireObstacle(x, z, scale, rotation){
+    var tire = new Tire();
+    obstacles[tire_idx].push(tire);
+    scene.add(tire.mesh);
+    tire.mesh.position.set(x,0,z);
+    tire.mesh.scale.set( scale, scale, scale );
+    tire.mesh.rotation.y = rotation;
+    return tire;
+}
+
+
 
 /**
  * Template for fuel container
@@ -474,7 +547,6 @@ function createFuel(x, z) {
 
     collidableFuels.push(fuel.collidable);
 }
-
 
 /**
  *
@@ -610,15 +682,39 @@ function get_xywh(object) {  // TODO: annotate
  * the map
  */
 
+var selected_obstable = ['Tree']
+const create_obstacle = {
+    'WoodenBox': () => {
+        createBoxes();
+    },
+    'Tire': () => {
+        createTires();
+    },
+    'Tree': () => {
+        createTrees();
+    }
+};
+const tire_idx = selected_obstable.indexOf('Tire');
+const box_idx = selected_obstable.indexOf('WoodenBox');
+const tree_idx = selected_obstable.indexOf('Tree');
+
+
 function createLevel() {
     createFuels();
-    createTrees();
+    // createTrees();
+    // createBoxes();
+    // createTires();
+    for( const obs of selected_obstable){
+        console.log(obs)
+        create_obstacle[obs]();
+    }
     startTimer();
 }
 
 function endLevel() {
     endFuels();
-    endTrees();
+    // endTrees();
+    endBoxes();
 
     updateStatus();
     stopTimer();
@@ -737,15 +833,19 @@ function updateRecordDisplay() {
     document.getElementById('record').innerHTML = record;
 }
 
+// this function is used to create all the tree on the map
+// the num of the tree is specified by numTrees var
+// the position for the obstacle is random
 function createTrees() { // TODO: find a home
     var x, y, scale, rotate, delay;
-    for (var i = 0; i < numTrees; i++) {
+    for (var i = 0; i < numObstacle; i++) {
         x = Math.random() * 600 - 300;
         z = Math.random() * 400 - 200;
         scale = Math.random() * 1 + 0.5;
         rotate = Math.random() * Math.PI * 2;
         delay = 2000 * Math.random()
-
+        
+        // the rule that specify no tree is in the surrounding area under 100 unit with car and fuel
         var treePosition = new THREE.Vector3( x, 0, z );
         if (treePosition.distanceTo(car.mesh.position) < car.berth ||
                 treePosition.distanceTo(fuel.mesh.position) < fuel.berth) {
@@ -757,7 +857,8 @@ function createTrees() { // TODO: find a home
             startGrowth(object, 50, 10, scale);
         }.bind(this, tree.mesh, scale), delay);
 
-        collidableTrees.push(tree.collidable);
+        collidableObstacle[tree_idx].push(tree.collidable);
+
     }
 }
 
@@ -769,10 +870,89 @@ function endTrees() {
             startShrink(object, 25, -10, scale);
         }.bind(this, tree.mesh, scale), delay);
     }
-    collidableTrees = [];
+    collidableObstacle[tree_idx] = [];
     collidableFuels = [];
-    trees = [];
+    obstacles[tree_idx]= [];
 }
+
+
+function createBoxes() { // TODO: find a home
+    var x, y, scale, rotate, delay;
+    for (var i = 0; i < numObstacle; i++) {
+        x = Math.random() * 600 - 300;
+        z = Math.random() * 400 - 200;
+        scale = Math.random() * 1 + 0.5;
+        rotate = Math.random() * Math.PI * 2;
+        delay = 2000 * Math.random()
+
+        var boxPosition = new THREE.Vector3( x, 0, z );
+        if (boxPosition.distanceTo(car.mesh.position) < car.berth ||
+        boxPosition.distanceTo(fuel.mesh.position) < fuel.berth) {
+            continue;
+        }
+        var box = createWoodenBox(x, z, 0.01, rotate)
+
+        setTimeout(function(object, scale) {
+            startGrowth(object, 50, 10, scale);
+        }.bind(this, box.mesh, scale), delay);
+
+        collidableObstacle[box_idx].push(box.collidable);
+
+    }
+}
+
+function endBoxes() {
+    for (let box of obstacles[box_idx]) {
+        scale = box.mesh.scale.x;
+        delay = delay = 2000 * Math.random();
+        setTimeout(function(object, scale) {
+            startShrink(object, 25, -10, scale);
+        }.bind(this, box.mesh, scale), delay);
+    }
+    collidableObstacle[box_idx] = [];
+    collidableFuels = [];
+    obstacles[box_idx]= [];
+}
+
+
+function createTires() { // TODO: find a home
+    var x, y, scale, rotate, delay;
+    for (var i = 0; i < numObstacle; i++) {
+        x = Math.random() * 600 - 300;
+        z = Math.random() * 400 - 200;
+        scale = Math.random() * 1 + 0.5;
+        rotate = Math.random() * Math.PI * 2;
+        delay = 2000 * Math.random()
+
+        var tirePosition = new THREE.Vector3( x, 0, z );
+        if (tirePosition.distanceTo(car.mesh.position) < car.berth ||
+        tirePosition.distanceTo(fuel.mesh.position) < fuel.berth) {
+            continue;
+        }
+        var tire = createTireObstacle(x, z, 0.01, rotate)
+
+        setTimeout(function(object, scale) {
+            startGrowth(object, 50, 10, scale);
+        }.bind(this, tire.mesh, scale), delay);
+
+        collidableObstacle[tire_idx].push(tire.collidable);
+    }
+}
+
+function endTires() {
+    for (let tire of obstacles[tire_idx]) {
+        scale = tire.mesh.scale.x;
+        delay = delay = 2000 * Math.random();
+        setTimeout(function(object, scale) {
+            startShrink(object, 25, -10, scale);
+        }.bind(this, tire.mesh, scale), delay);
+    }
+    collidableObstacle[tire_idx] = [];
+    collidableFuels = [];
+    obstacles[tire_idx]= [];
+}
+
+
 
 function createFuels() {
     var x = Math.random() * 600 - 300;
