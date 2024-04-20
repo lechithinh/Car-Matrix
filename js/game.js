@@ -11,39 +11,33 @@ var Colors = {
 };
 
 
-var car, fuel, ground, obstacles = [[]], numObstacle = 10, collidableObstacle = [[]],
-collidableFuels = [];
+var scene, camera, car, fuel, ground, obstacles = [[]], 
+    numObstacle = 10, 
+    collidableObstacle = [[]],
+    collidableFuels = [];
 
 
 function init() {
 
-	// set up the scene, the camera and the renderer
 	createScene();
 
-	// add the lights
 	var { hemisphereLight, shadowLight } = createLights();
     scene.add(hemisphereLight);
     scene.add(shadowLight);
 
-	// add the objects
-    var ground = createGround(); //ground = [[]]
+    var ground = createGround(); 
     scene.add(ground);
 
-    // car set up
     car = createCar();
     scene.add(car.mesh);
 
-    // level set up
     createLevel();
 
-    // add controls
     createControls();
 
-    // reset game
     resetGame();
 
 	// start a loop that will update the objects' positions
-	// and render the scene on each frame
 	loop();
 }
 

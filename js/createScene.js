@@ -7,25 +7,16 @@
  * Boilerplate for scene, camera, renderer, lights taken from
  * https://tympanus.net/codrops/2016/04/26/the-aviator-animating-basic-3d-scene-threejs/
  */
-var scene, 
-    camera, 
-    fieldOfView, 
-    aspectRatio, 
-    nearPlane, 
-    farPlane, 
-    HEIGHT, 
-    WIDTH,	
-    renderer, 
-    container;
+var fieldOfView,  aspectRatio, nearPlane, farPlane, renderer, container;
+var HEIGHT, WIDTH;	
+    
 
 function createScene() {
-	// Get the width and the height of the screen,
 	// use them to set up the aspect ratio of the camera
 	// and the size of the renderer.
 	HEIGHT = window.innerHeight;
 	WIDTH = window.innerWidth;
 
-	// Create the scene
 	scene = new THREE.Scene();
 
 	// Add a fog effect to the scene; same color as the
