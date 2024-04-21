@@ -4,6 +4,7 @@
  * ------
  * Utilities for applying lights in scene
  */
+import * as THREE from 'three'
 
 
 function createLights() {
@@ -38,3 +39,5 @@ function createLights() {
 	// to activate the lights, just add them to the scene
     return {hemisphereLight, shadowLight}
 }
+
+export {createLights}

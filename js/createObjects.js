@@ -1,3 +1,5 @@
+import * as THREE from 'three'
+
 function createBox(dx, dy, dz, color, x, y, z, notFlatShading,texture_path) {
     var geom = new THREE.BoxGeometry(dx, dy, dz);
     console.log(texture_path)
@@ -46,3 +48,5 @@ function createTire(radiusTop, radiusBottom, height, radialSegments, color, x, y
     cylinder.rotation.x = Math.PI / 2;  // hardcoded for tires in the car below
     return cylinder;
 }
+
+export {createBox,createCylinder, createTire}

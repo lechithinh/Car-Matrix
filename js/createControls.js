@@ -1,3 +1,5 @@
+import { car } from "./createCar.js";
+
 var left = 37;
 var right = 39;
 var up = 38;
@@ -7,18 +9,18 @@ function createControls() {
     document.addEventListener(
         'keydown',
         function( ev ) {
-            key = ev.keyCode;
+            var key = ev.code;
 
-            if (key == left) {
+            if (key === 'ArrowLeft') { // Use 'ArrowLeft' for the left arrow key
                 car.turnLeft();
             }
-            if (key == right) {
+            if (key === 'ArrowRight') { // Use 'ArrowRight' for the right arrow key
                 car.turnRight();
             }
-            if (key == up) {
+            if (key === 'ArrowUp') { // Use 'ArrowUp' for the up arrow key
                 car.moveForward();
             }
-            if (key == down) {
+            if (key === 'ArrowDown') { // Use 'ArrowDown' for the down arrow key
                 car.moveBackward();
             }
         }
@@ -27,20 +29,23 @@ function createControls() {
     document.addEventListener(
         'keyup',
         function( ev ) {
-            key = ev.keyCode;
+            var key = ev.code;
 
-            if (key == left) {
+            if (key === 'ArrowLeft') {
                 car.stopLeft();
             }
-            if (key == right) {
+            if (key === 'ArrowRight') {
                 car.stopRight();
             }
-            if (key == up) {
+            if (key === 'ArrowUp') {
                 car.stopForward();
             }
-            if (key == down) {
+            if (key === 'ArrowDown') {
                 car.stopBackward();
             }
         }
     );
 }
+
+
+export {createControls}

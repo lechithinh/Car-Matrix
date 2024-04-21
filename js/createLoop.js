@@ -5,7 +5,14 @@
  * ---------
  * Handles controls, game loop, and object collisions
  */
+import * as THREE from 'three'
 
+import { car } from "./createCar.js";
+import { scene } from "./createScene.js";
+import { animateGrow, animateShrink } from './addAnimation.js';
+import { renderer, camera } from './createScene.js';
+import { collidableFuels } from './game.js';
+import { endLevel } from './addUpdateLogic.js';
 function loop() {
     // handle car movement and collisions
     car.update();
@@ -55,9 +62,9 @@ function checkCollisions() {
 }
 
 function objectInBound(object, objectList) { // TODO: annotate
-    o = get_xywh(object);
+    var o = get_xywh(object);
     for (let target of objectList) {
-        t = get_xywh(target);
+        var t = get_xywh(target);
         if ( (Math.abs(o.x - t.x) * 2 < t.w + o.w) && (Math.abs(o.y - t.y) * 2 < t.h + o.h)) {
             console.log(o)
             return true;
@@ -79,3 +86,5 @@ function get_xywh(object) {  // TODO: annotate
     var h = p.height;
     return {'x': x, 'y': y, 'w': w, 'h': h};
 }
+
+export {loop,get_xywh, objectInBound}

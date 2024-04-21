@@ -1,9 +1,15 @@
-
+import { car } from "./createCar.js"
+import { endFuels } from "./createFuels.js"
+import { selected_obstacle, create_obstacle, createLevel } from "./createLevel.js"
 function endLevel() {
     endFuels();
     // endTrees();
-    endBoxes();
+    // endBoxes();
 
+    for( const obs of selected_obstacle){
+        console.log(obs)
+        create_obstacle[obs](false);
+    }
     updateStatus();
     stopTimer();
 
@@ -120,3 +126,6 @@ function updateScoreDisplay() {
 function updateRecordDisplay() {
     document.getElementById('record').innerHTML = record;
 }
+
+
+export{startTimer,resetGame,endLevel}

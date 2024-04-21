@@ -2,6 +2,15 @@
 	<head>
 		<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700" rel="stylesheet">
 		<link href="style.css" rel="stylesheet">
+
+		<script type="importmap">
+			{
+				"imports": {
+					"three": "./js/three.js-master/build/three.module.js"
+				}
+			}
+		</script>
+
 	</head>
 	<body>
 		<div class="panel">
@@ -33,22 +42,24 @@
 			<p class="instructions">Use arrow keys to move. Collect fuel to survive!</p>
 		</div>
 		<div id="world"></div>
-		<script type="text/javascript" src="js/three.min.js"></script>
-        <script type="text/javascript" src="js/game.js"></script>
-		<script type="text/javascript" src="js/createLights.js"></script>
-		<script type="text/javascript" src="js/createGround.js"></script>
-		<script type="text/javascript" src="js/createObjects.js"></script>
-		<script type="text/javascript" src="js/createCar.js"></script>
-		<script type="text/javascript" src="js/createWoodenBox.js"></script>
-		<script type="text/javascript" src="js/createTree.js"></script>
-		<script type="text/javascript" src="js/createTire.js"></script>
-		<script type="text/javascript" src="js/createControls.js"></script>
-		<script type="text/javascript" src="js/createFuels.js"></script>
-		<script type="text/javascript" src="js/createLevel.js"></script>
-		<script type="text/javascript" src="js/addAnimation.js"></script>
-		<script type="text/javascript" src="js/createLoop.js"></script>
-		<script type="text/javascript" src="js/addUpdateLogic.js"></script>
-		<script type="text/javascript" src="js/createScene.js"></script>
+		<!-- <script type="text/javascript" src="js/three.min.js"></script> -->
+		
 
+        <script type="module" src="./js/game.js"></script>
+		<script type="module" src="./js/createLights.js"></script>
+		<script type="module" src="./js/createGround.js"></script>
+		<script type="module" src="./js/createObjects.js"></script>
+		<script type="module" src="./js/createCar.js"></script>
+		<script type="module" src="./js/createWoodenBox.js"></script>
+		<script type="module" src="./js/createTree.js"></script>
+		<script type="module" src="./js/createTire.js"></script>
+		<script type="module" src="./js/createControls.js"></script>
+		<script type="module" src="./js/createFuels.js"></script>
+		<script type="module" src="./js/createLevel.js"></script>
+		<script type="module" src="./js/addAnimation.js"></script>
+		<script type="module" src="./js/createLoop.js"></script>
+		<script type="module" src="./js/addUpdateLogic.js"></script>
+		<script type="module" src="./js/createScene.js"></script>
+		
 	</body>
 </html>

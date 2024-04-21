@@ -1,0 +1,288 @@
+{
+  "accessors": [
+    {
+      "bufferView": 2,
+      "componentType": 5126,
+      "count": 125,
+      "max": [
+        0.9539783596992493,
+        2.029036283493042,
+        0.920538067817688
+      ],
+      "min": [
+        -0.9539783596992493,
+        -0.9648370146751404,
+        -0.962100088596344
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 1500,
+      "componentType": 5126,
+      "count": 125,
+      "max": [
+        0.9862363338470459,
+        0.9720790982246399,
+        0.9942073822021484
+      ],
+      "min": [
+        -0.9880379438400269,
+        -0.9896179437637329,
+        -0.9872923493385315
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 3,
+      "componentType": 5126,
+      "count": 125,
+      "max": [
+        0.7794067859649658,
+        0.9082586765289307,
+        0.7363097071647644,
+        1.0
+      ],
+      "min": [
+        -0.978131115436554,
+        -0.9884321093559265,
+        -0.9996185302734375,
+        1.0
+      ],
+      "type": "VEC4"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 125,
+      "max": [
+        0.9576147794723511,
+        0.9945134520530701
+      ],
+      "min": [
+        0.003771871328353882,
+        0.005486577749252319
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "componentType": 5125,
+      "count": 564,
+      "type": "SCALAR"
+    }
+  ],
+  "asset": {
+    "extras": {
+      "author": "Jesus Fernandez Garcia (https://sketchfab.com/jamyzgenius)",
+      "license": "CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)",
+      "source": "https://sketchfab.com/3d-models/low-polygon-stylized-rock-free-c34bba04360e47268c0099b1842f0add",
+      "title": "Low Polygon Stylized Rock [FREE]"
+    },
+    "generator": "Sketchfab-12.66.0",
+    "version": "2.0"
+  },
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 2256,
+      "name": "floatBufferViews",
+      "target": 34963
+    },
+    {
+      "buffer": 0,
+      "byteLength": 1000,
+      "byteOffset": 2256,
+      "byteStride": 8,
+      "name": "floatBufferViews",
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 3000,
+      "byteOffset": 3256,
+      "byteStride": 12,
+      "name": "floatBufferViews",
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 2000,
+      "byteOffset": 6256,
+      "byteStride": 16,
+      "name": "floatBufferViews",
+      "target": 34962
+    }
+  ],
+  "buffers": [
+    {
+      "byteLength": 8256,
+      "uri": "scene.bin"
+    }
+  ],
+  "images": [
+    {
+      "uri": "textures/M_STYLIZEDROCK_1_JFG_baseColor.png"
+    },
+    {
+      "uri": "textures/M_STYLIZEDROCK_1_JFG_metallicRoughness.png"
+    },
+    {
+      "uri": "textures/M_STYLIZEDROCK_1_JFG_normal.png"
+    }
+  ],
+  "materials": [
+    {
+      "doubleSided": true,
+      "name": "M_STYLIZEDROCK_1_JFG",
+      "normalTexture": {
+        "index": 2
+      },
+      "occlusionTexture": {
+        "index": 1
+      },
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 0
+        },
+        "metallicFactor": 0.0,
+        "metallicRoughnessTexture": {
+          "index": 1
+        }
+      }
+    }
+  ],
+  "meshes": [
+    {
+      "name": "SM_STYLIZEDROCK_1_JFG_M_STYLIZEDROCK_1_JFG_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 1,
+            "POSITION": 0,
+            "TANGENT": 2,
+            "TEXCOORD_0": 3
+          },
+          "indices": 4,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "children": [
+        1
+      ],
+      "matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        2.220446049250313e-16,
+        -1.0,
+        0.0,
+        0.0,
+        1.0,
+        2.220446049250313e-16,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "Sketchfab_model"
+    },
+    {
+      "children": [
+        2
+      ],
+      "matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "319136f731fa4ac998a34aba5b1aae51.fbx"
+    },
+    {
+      "children": [
+        3
+      ],
+      "name": "RootNode"
+    },
+    {
+      "children": [
+        4
+      ],
+      "matrix": [
+        75.57534790039063,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        75.57534790038962,
+        1.2312787444733065e-05,
+        0.0,
+        0.0,
+        -1.2312787444733065e-05,
+        75.57534790038962,
+        0.0,
+        0.0,
+        44.021121978759766,
+        8.678574562072754,
+        1.0
+      ],
+      "name": "SM_STYLIZEDROCK_1_JFG"
+    },
+    {
+      "mesh": 0,
+      "name": "SM_STYLIZEDROCK_1_JFG_M_STYLIZEDROCK_1_JFG_0"
+    }
+  ],
+  "samplers": [
+    {
+      "magFilter": 9729,
+      "minFilter": 9987,
+      "wrapS": 10497,
+      "wrapT": 10497
+    }
+  ],
+  "scene": 0,
+  "scenes": [
+    {
+      "name": "Sketchfab_Scene",
+      "nodes": [
+        0
+      ]
+    }
+  ],
+  "textures": [
+    {
+      "sampler": 0,
+      "source": 0
+    },
+    {
+      "sampler": 0,
+      "source": 1
+    },
+    {
+      "sampler": 0,
+      "source": 2
+    }
+  ]
+}

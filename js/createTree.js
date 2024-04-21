@@ -1,3 +1,15 @@
+import * as THREE from 'three'
+import {numObstacle, obstacles,collidableObstacle, init_obstacle } from "./game.js";
+import { car } from './createCar.js';
+import { fuel } from './createFuels.js';
+import { createCylinder } from './createObjects.js';
+import { Colors } from './color.js';
+import { tree_idx } from './createLevel.js';
+import { scene } from './createScene.js';
+import { startGrowth, startShrink } from './addAnimation.js';
+
+
+
 function Tree() {
 
     this.mesh = new THREE.Object3D();
@@ -28,7 +40,7 @@ function createTree(x, z, scale, rotation) {
 }
 
 function createTrees() { // TODO: find a home
-    var x, y, scale, rotate, delay;
+    var x, z, scale, rotate, delay;
     for (var i = 0; i < numObstacle; i++) {
         x = Math.random() * 600 - 300;
         z = Math.random() * 400 - 200;
@@ -54,14 +66,15 @@ function createTrees() { // TODO: find a home
 }
 
 function endTrees() {
-    for (let tree of trees) {
-        scale = tree.mesh.scale.x;
-        delay = delay = 2000 * Math.random();
+    for (let tree of  obstacles[tree_idx]) {
+        var scale = tree.mesh.scale.x;
+        var delay = delay = 2000 * Math.random();
         setTimeout(function(object, scale) {
             startShrink(object, 25, -10, scale);
         }.bind(this, tree.mesh, scale), delay);
     }
-    collidableObstacle[tree_idx] = [];
-    collidableFuels = [];
-    obstacles[tree_idx]= [];
+    init_obstacle();
+
 }
+
+export {createTrees,endTrees}
