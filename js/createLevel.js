@@ -5,22 +5,42 @@
  * Logic for start and end of levels, including initialization of objects on
  * the map
  */
-
-var selected_obstable = ['WoodenBox']
+import {createFuels} from './createFuels.js'
+import { createBoxes,endBoxes } from './createWoodenBox.js';
+import { createTires,endTires } from './createTire.js';
+import {createTrees, endTrees} from './createTree.js';
+import { startTimer } from './addUpdateLogic.js';
+var box_idx, tire_idx, tree_idx;
+var selected_obstacle= ['Tire']
 const create_obstacle = {
-    'WoodenBox': () => {
-        createBoxes();
+    'WoodenBox': (start) => {
+        if(start){
+            box_idx = selected_obstacle.indexOf('WoodenBox');
+            createBoxes();
+        }
+        else{
+            endBoxes();
+        }
     },
-    'Tire': () => {
-        createTires();
+    'Tire': (start) => {
+        if(start){
+            tire_idx = selected_obstacle.indexOf('Tire');
+            createTires();
+        }
+        else{
+            endTires();
+        }
     },
-    'Tree': () => {
-        createTrees();
+    'Tree': (start) => {
+        if(start){
+            tree_idx = selected_obstacle.indexOf('Tree');
+            createTrees();
+        }
+        else{
+            endTrees();
+        }
     }
-};
-const tire_idx = selected_obstable.indexOf('Tire');
-const box_idx = selected_obstable.indexOf('WoodenBox');
-const tree_idx = selected_obstable.indexOf('Tree');
+}
 
 
 function createLevel() {
@@ -28,9 +48,11 @@ function createLevel() {
     // createTrees();
     // createBoxes();
     // createTires();
-    for( const obs of selected_obstable){
+    for( const obs of selected_obstacle){
         console.log(obs)
-        create_obstacle[obs]();
+        create_obstacle[obs](true);
     }
     startTimer();
 }
+
+export {createLevel,box_idx,tire_idx,tree_idx, selected_obstacle, create_obstacle}

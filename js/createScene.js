@@ -7,7 +7,11 @@
  * Boilerplate for scene, camera, renderer, lights taken from
  * https://tympanus.net/codrops/2016/04/26/the-aviator-animating-basic-3d-scene-threejs/
  */
-var fieldOfView,  aspectRatio, nearPlane, farPlane, renderer, container;
+
+import * as THREE from 'three'
+// import scene  from './game.js';
+
+var scene, camera, fieldOfView,  aspectRatio, nearPlane, farPlane, renderer, container;
 var HEIGHT, WIDTH;	
     
 
@@ -65,6 +69,7 @@ function createScene() {
 	// Listen to the screen: if the user resizes it
 	// we have to update the camera and the renderer size
 	window.addEventListener('resize', handleWindowResize, false);
+
 }
 
 function handleWindowResize() {
@@ -75,3 +80,5 @@ function handleWindowResize() {
 	camera.aspect = WIDTH / HEIGHT;
 	camera.updateProjectionMatrix();
 }
+
+export {createScene, scene, camera, renderer}

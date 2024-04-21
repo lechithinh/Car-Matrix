@@ -9,7 +9,7 @@
  * start growing or shrinking the object. Main game loop invoke `animateGrow`
  * and `animateShrink` which handle incremental grow and shrink updates.
  */
-
+import { scene } from "./createScene.js";
 function startGrowth(object, duration, dy, scale) { // TODO: annotate all of these functions
     object.animateGrow_isGrowing = true;
     object.animateGrow_end_time = duration;
@@ -52,7 +52,8 @@ function animateGrow() {
 }
 
 function animateShrink() {
-    var scale, progress;
+    var progress, x, y, z, scale;
+
     for (let child of scene.children) {
         if (child.animateShrink_isShrinking) {
             child.animateShrink_time--;
@@ -74,3 +75,5 @@ function animateShrink() {
         }
     }
 }
+
+export {startGrowth,startShrink,animateShrink,animateGrow}

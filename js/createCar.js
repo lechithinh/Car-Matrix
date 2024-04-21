@@ -2,8 +2,17 @@
  * Template for Car with "advanced motion" (i.e., acceleration and deceleration,
  * rotation speed as a function of speed)
  */
+import * as THREE from 'three';
+import {GLTFLoader} from './three.js-master/examples/jsm/loaders/GLTFLoader.js';
+import {Colors} from './color.js';
+import { createBox, createTire } from './createObjects.js';
+import { scene } from "./createScene.js";
+import { objectInBound } from './createLoop.js';
+import { collidableObstacle } from './game.js';
 
 // Color for car
+// console.log(Colors.blue)
+// console.log(Colors);
 var bodyColor = Colors.brown;
 var roofColor = Colors.brown;
 var bumperColor = Colors.brownDark;
@@ -11,6 +20,7 @@ var grateColor = Colors.brownDark;
 var doorColor = Colors.brown;
 var handleColor = Colors.brownDark;
 
+var car; 
 function Car() {
 
     var direction = new THREE.Vector3(1., 0., 0.);
@@ -158,5 +168,8 @@ function Car() {
  */
 function createCar() {
     car = new Car();
-    return car
+    // return car
+    scene.add(car.mesh)
 }
+
+export {createCar,car}

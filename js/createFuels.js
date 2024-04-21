@@ -1,3 +1,12 @@
+import * as THREE from 'three'
+import { createBox } from './createObjects.js';
+import { Colors } from './color.js';
+import { createTire } from './createObjects.js';
+import { scene } from './createScene.js';
+import {collidableFuels} from './game.js'
+import { startGrowth, startShrink } from './addAnimation.js';
+
+var fuel;
 function Fuel() {
     this.mesh = new THREE.Object3D();
     this.berth = 100;
@@ -47,6 +56,8 @@ function createFuels() {
 }
 
 function endFuels() {
-    scale = fuel.mesh.scale.x;
+    var scale = fuel.mesh.scale.x;
     startShrink( fuel.mesh, 25, -10, scale );
 }
+
+export {createFuels, endFuels, fuel}
