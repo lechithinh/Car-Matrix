@@ -9,6 +9,7 @@
  */
 
 import * as THREE from 'three'
+import {OrbitControls} from 'orbit'
 // import scene  from './game.js';
 
 var scene, camera, fieldOfView,  aspectRatio, nearPlane, farPlane, renderer, container;
@@ -39,6 +40,7 @@ function createScene() {
 		farPlane
 		);
 
+
 	// Set the position of the camera
 	camera.position.set( 0, 400, 400 );
     camera.lookAt( 0, 0, 0 );
@@ -53,6 +55,9 @@ function createScene() {
 		// but, as our project is low-poly based, it should be fine :)
 		antialias: true
 	});
+
+	const controls = new OrbitControls( camera, renderer.domElement );
+	controls.update();
 
 	// Define the size of the renderer; in this case,
 	// it will fill the entire screen
