@@ -9,6 +9,8 @@ import { box_idx } from './createLevel.js';
 import { scene } from './createScene.js';
 import { startGrowth, startShrink } from './addAnimation.js';
 
+var boxes;
+var collidable_obs;
 function WoodenBox(){
     this.mesh = new THREE.Object3D();
     var texturepath = 'resource/texture/box_texture.png';
@@ -22,7 +24,7 @@ function WoodenBox(){
 
 function createWoodenBox(x, z, scale, rotation){
     var box = new WoodenBox();
-    obstacles[box_idx].push(box);
+    boxes.push(box);
     scene.add(box.mesh);
     box.mesh.position.set(x,0,z);
     box.mesh.scale.set( scale, scale, scale );
@@ -32,6 +34,8 @@ function createWoodenBox(x, z, scale, rotation){
 
 
 function createBoxes() { // TODO: find a home
+    collidable_obs = [];
+    boxes = [];
     var x, z, scale, rotate, delay;
     for (var i = 0; i < numObstacle; i++) {
         x = Math.random() * 600 - 300;
@@ -51,20 +55,23 @@ function createBoxes() { // TODO: find a home
             startGrowth(object, 50, 10, scale);
         }.bind(this, box.mesh, scale), delay);
 
-        collidableObstacle[box_idx].push(box.collidable);
-
+        // collidableObstacle[box_idx].push(box.collidable);
+        collidable_obs.push(box.collidable);
     }
+    obstacles.push(boxes);
+    collidableObstacle.push(collidable_obs);
 }
 
 function endBoxes() {
-    for (let box of obstacles[box_idx]) {
+    var temp = obstacles[box_idx];
+    for (let box of temp) {
         var scale = box.mesh.scale.x;
         var delay = delay = 2000 * Math.random();
         setTimeout(function(object, scale) {
             startShrink(object, 25, -10, scale);
         }.bind(this, box.mesh, scale), delay);
     }
-    init_obstacle();
+    // init_obstacle();
 }
 
 export {createBoxes,endBoxes}

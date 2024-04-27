@@ -21,15 +21,15 @@ function loop() {
     animateGrow();
     animateShrink();
 
-	// render the scene
-	renderer.render(scene, camera);
-	scene.rotation.y += 0.0025
+    // render the scene
+    renderer.render(scene, camera);
+    scene.rotation.y += 0.0025
 
-	// check global collisions
+    // check global collisions
     checkCollisions();
 
-	// call the loop function again
-	requestAnimationFrame(loop);
+    // call the loop function again
+    requestAnimationFrame(loop);
 }
 
 
@@ -41,11 +41,11 @@ function objectCollidedWith(object, collidableMeshList) {  // TODO: place elsewh
         for (var vertexIndex = 0; vertexIndex < child.geometry.vertices.length; vertexIndex++) {
             var localVertex = child.geometry.vertices[vertexIndex].clone();
             var globalVertex = localVertex.applyMatrix4(child.matrix);
-            var directionVector = child.position.sub( globalVertex );
+            var directionVector = child.position.sub(globalVertex);
 
-            var ray = new THREE.Raycaster( childPosition, directionVector.clone().normalize() );
-            var collisionResults = ray.intersectObjects( collidableMeshList );
-            if ( collisionResults.length > 0 && collisionResults[0].distance < directionVector.length() ) {
+            var ray = new THREE.Raycaster(childPosition, directionVector.clone().normalize());
+            var collisionResults = ray.intersectObjects(collidableMeshList);
+            if (collisionResults.length > 0 && collisionResults[0].distance < directionVector.length()) {
                 return true;
             }
         }
@@ -63,11 +63,15 @@ function checkCollisions() {
 
 function objectInBound(object, objectList) { // TODO: annotate
     var o = get_xywh(object);
-    for (let target of objectList) {
-        var t = get_xywh(target);
-        if ( (Math.abs(o.x - t.x) * 2 < t.w + o.w) && (Math.abs(o.y - t.y) * 2 < t.h + o.h)) {
-            console.log(o)
-            return true;
+    for (let object of objectList) {
+        // console.log("obj lst: ",objectList)
+        // console.log("obj: ",object)
+        for (let target of object) {
+            var t = get_xywh(target);
+            if ((Math.abs(o.x - t.x) * 2 < t.w + o.w) && (Math.abs(o.y - t.y) * 2 < t.h + o.h)) {
+                // console.log(o)
+                return true;
+            }
         }
     }
     return false;
@@ -75,7 +79,7 @@ function objectInBound(object, objectList) { // TODO: annotate
 
 function get_xywh(object) {  // TODO: annotate
     var p = object.geometry.parameters;
-    var globalPosition = new THREE.Vector3( 0., 0., 0. );
+    var globalPosition = new THREE.Vector3(0., 0., 0.);
     object.getWorldPosition(globalPosition);
     var x = globalPosition.x;
     var y = globalPosition.z;
@@ -84,7 +88,7 @@ function get_xywh(object) {  // TODO: annotate
         w = Math.max(p.radiusTop, p.radiusBottom); // should be multiplied by 2?
     }
     var h = p.height;
-    return {'x': x, 'y': y, 'w': w, 'h': h};
+    return { 'x': x, 'y': y, 'w': w, 'h': h };
 }
 
-export {loop,get_xywh, objectInBound}
+export { loop, get_xywh, objectInBound }
