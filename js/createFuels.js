@@ -44,7 +44,7 @@ function createFuel(x, z) {
     fuel = new Fuel();
     fuel.mesh.position.set( x, 0, z );
     scene.add(fuel.mesh);
-    collidableFuels.push(fuel.collidable);
+    collidableFuels[0].push(fuel.collidable);
 }
 
 

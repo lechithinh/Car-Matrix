@@ -11,7 +11,7 @@ import { createTires,endTires } from './createTire.js';
 import {createTrees, endTrees} from './createTree.js';
 import { startTimer } from './addUpdateLogic.js';
 var box_idx, tire_idx, tree_idx;
-var selected_obstacle= ['Tire']
+var selected_obstacle= ['WoodenBox','Tree','Tire']
 const create_obstacle = {
     'WoodenBox': (start) => {
         if(start){
@@ -40,11 +40,17 @@ const create_obstacle = {
             endTrees();
         }
     }
+    // 'Rock': (start) => {
+    //     if (start){
+
+    //     }
+    // }
 }
 
 
 function createLevel() {
     createFuels();
+    
     // createTrees();
     // createBoxes();
     // createTires();

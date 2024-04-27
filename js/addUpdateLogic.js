@@ -1,15 +1,16 @@
 import { car } from "./createCar.js"
 import { endFuels } from "./createFuels.js"
 import { selected_obstacle, create_obstacle, createLevel } from "./createLevel.js"
+import { init_obstacle } from "./game.js";
 function endLevel() {
     endFuels();
     // endTrees();
     // endBoxes();
-
     for( const obs of selected_obstacle){
         console.log(obs)
         create_obstacle[obs](false);
     }
+    init_obstacle();
     updateStatus();
     stopTimer();
 

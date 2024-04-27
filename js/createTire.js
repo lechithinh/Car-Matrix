@@ -8,6 +8,9 @@ import { tire_idx } from './createLevel.js';
 import { scene } from './createScene.js';
 import { startGrowth, startShrink } from './addAnimation.js';
 
+
+var tires;
+var collidable_obs;
 function Tire(){
     this.mesh = new THREE.Object3D();
     var texturepath = 'resource/texture/tire_texture.png';
@@ -22,7 +25,7 @@ function Tire(){
 
 function createTireObstacle(x, z, scale, rotation){
     var tire = new Tire();
-    obstacles[tire_idx].push(tire);
+    tires.push(tire);
     scene.add(tire.mesh);
     tire.mesh.position.set(x,0,z);
     tire.mesh.scale.set( scale, scale, scale );
@@ -31,6 +34,8 @@ function createTireObstacle(x, z, scale, rotation){
 }
 
 function createTires() { // TODO: find a home
+    collidable_obs = [];
+    tires = [];
     var x, z, scale, rotate, delay;
     for (var i = 0; i < numObstacle; i++) {
         x = Math.random() * 600 - 300;
@@ -50,19 +55,23 @@ function createTires() { // TODO: find a home
             startGrowth(object, 50, 10, scale);
         }.bind(this, tire.mesh, scale), delay);
 
-        collidableObstacle[tire_idx].push(tire.collidable);
+        // collidableObstacle[tire_idx].push(tire.collidable);
+        collidable_obs.push(tire.collidable);
     }
+    obstacles.push(tires);
+    collidableObstacle.push(collidable_obs);
 }
 
 function endTires() {
-    for (let tire of obstacles[tire_idx]) {
+    var temp = obstacles[tire_idx];
+    for (let tire of temp) {
         var scale = tire.mesh.scale.x;
         var delay = delay = 2000 * Math.random();
         setTimeout(function(object, scale) {
             startShrink(object, 25, -10, scale);
         }.bind(this, tire.mesh, scale), delay);
     }
-    init_obstacle();
+    // init_obstacle();
 }
 
 export {createTires, endTires}
