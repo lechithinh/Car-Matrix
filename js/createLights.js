@@ -8,6 +8,7 @@ import * as THREE from 'three'
 
 
 function createLights() {
+
 	// A hemisphere light is a gradient colored light;
 	// the first parameter is the sky color, the second parameter is the ground color,
 	// the third parameter is the intensity of the light
@@ -37,7 +38,13 @@ function createLights() {
 	shadowLight.shadow.mapSize.height = 2048;
 
 	// to activate the lights, just add them to the scene
-    return {hemisphereLight, shadowLight}
+
+	var nightLight = new THREE.DirectionalLight(0x0000ff, 0.5);
+	nightLight.position.set(1, 1, 1).normalize();
+
+	nightLight.visible = false; // Hide night light initially
+
+    return {hemisphereLight, shadowLight, nightLight}
 }
 
 export {createLights}

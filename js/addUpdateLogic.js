@@ -1,7 +1,9 @@
 import { car } from "./createCar.js"
 import { endFuels } from "./createFuels.js"
 import { selected_obstacle, create_obstacle, createLevel } from "./createLevel.js"
+import { ground } from "./createGround.js";
 import { init_obstacle } from "./game.js";
+
 function endLevel() {
     endFuels();
     // endTrees();

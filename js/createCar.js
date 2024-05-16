@@ -82,11 +82,11 @@ function Car() {
     this.mesh.add(backLeftTire);
     this.mesh.add(backRightTire);
 
-	var headLightLeftLight = new THREE.PointLight( 0xffcc00, 1, 100 );
+	var headLightLeftLight = new THREE.PointLight( 0xffcc00, 1000, 100 );
     headLightLeftLight.position.set( 50, 5, 15 );
     this.mesh.add( headLightLeftLight );
 
-    var headLightRightLight = new THREE.PointLight( 0xffcc00, 1, 100 );
+    var headLightRightLight = new THREE.PointLight( 0xffcc00, 1000, 100 );
     headLightRightLight.position.set( 50, 5, -15 );
     this.mesh.add( headLightRightLight );
 

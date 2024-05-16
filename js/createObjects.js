@@ -49,4 +49,43 @@ function createTire(radiusTop, radiusBottom, height, radialSegments, color, x, y
     return cylinder;
 }
 
-export {createBox,createCylinder, createTire}
+
+
+// Hàm tạo fence
+
+
+function createFence(radius, height, radialSegments, heightSegments, thetaLength, color, x, y, z, notFlatShading, texture_path) {
+    // Tạo geometry cho thanh ngang của hàng rào
+    
+    // Tạo vật liệu cho hàng rào
+    var fenceMaterial;
+    if (texture_path) {
+        var texture = new THREE.TextureLoader().load(texture_path);
+        texture.encoding = THREE.sRGBEncoding; // Đảm bảo chính xác encoding
+        texture.wrapS = THREE.RepeatWrapping;
+        texture.wrapT = THREE.RepeatWrapping;
+        texture.repeat.set(1, 1);
+        fenceMaterial = new THREE.MeshPhongMaterial({ color: color, flatShading: notFlatShading !== true, map: texture });
+    } else {
+        fenceMaterial = new THREE.MeshPhongMaterial({ color: color, flatShading: notFlatShading !== true });
+    }
+    
+    // Tạo hàng rào
+    // var fence = new THREE.Mesh(barGeometry, fenceMaterial);
+    // var cylinder = new THREE.Mesh(geom, mat);
+    
+    const geometry = new THREE.ConeGeometry(radius , height , radialSegments, heightSegments, thetaLength  ); 
+    const material = new THREE.MeshBasicMaterial( {color: color} );
+    const cone = new THREE.Mesh(geometry, fenceMaterial ); 
+    
+    
+    // fence.add(mesh);
+    // Đặt vị trí của hàng rào
+    cone.castShadow = true;
+    cone.receiveShadow = true;
+    cone.position.set(x, y, z);
+    
+    return cone;
+}
+
+export {createBox,createCylinder, createTire, createFence}
