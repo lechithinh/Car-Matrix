@@ -1,5 +1,5 @@
 // import * as  THREE from './three.js-master/build/three.module.js'
-import {GLTFLoader} from './three.js-master/examples/jsm/loaders/GLTFLoader.js'
+import {GLTFLoader} from 'gltf'
 import { createScene, scene } from './createScene.js'
 import {createLights} from './createLights.js'
 import {createGround} from './createGround.js'
@@ -23,21 +23,22 @@ import * as THREE from 'three'
 // };
 
 
-var obstacles, 
-    numObstacle, 
-    collidableObstacle,
-    collidableFuels;
+var obstacles = [], 
+    numObstacle = 10, 
+    collidableObstacle = [],
+    collidableFuels = [[]];
+
 
 function init_obstacle(){
-    collidableObstacle = [[]];
-    collidableFuels = [];
-    obstacles= [[]];
-    numObstacle = 10
-
+    collidableObstacle = [];
+    obstacles= [];
+    collidableFuels = [[]];
 }
+
 var isDay = true;
 
 init_obstacle();
+
 
 function init() {
     
@@ -116,3 +117,10 @@ function init() {
 window.addEventListener('load', init, false);
 
 export {collidableFuels, numObstacle, collidableObstacle, obstacles, init_obstacle}
+
+const loader = new GLTFLoader();
+loader.load('resource/model/low_polygon_stylized_rock_free/scene.gltf',function(gltf){
+    scene.add(gltf.scene);
+}, undefined, function(error){
+    console.log(error);
+});

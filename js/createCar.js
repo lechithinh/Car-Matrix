@@ -106,8 +106,8 @@ function Car() {
         this.mesh.updateMatrixWorld();
 
         // disallow travel through trees
-        if (objectInBound(this.collidable, collidableObstacle[0]) && is_moving) {
-            while (objectInBound(this.collidable, collidableObstacle[0])) {
+        if (objectInBound(this.collidable, collidableObstacle) && is_moving) {
+            while (objectInBound(this.collidable, collidableObstacle)) {
                 this.mesh.position.addScaledVector(direction, -currentSpeed);
                 this.mesh.updateMatrixWorld();
             }

@@ -8,8 +8,8 @@ import { tree_idx } from './createLevel.js';
 import { scene } from './createScene.js';
 import { startGrowth, startShrink } from './addAnimation.js';
 
-
-
+var trees;
+var collidable_obs;
 function Tree() {
 
     this.mesh = new THREE.Object3D();
@@ -31,7 +31,7 @@ function Tree() {
  */
 function createTree(x, z, scale, rotation) {
     var tree = new Tree();
-    obstacles[tree_idx].push(tree);
+    trees.push(tree);
     scene.add(tree.mesh);
     tree.mesh.position.set( x, 0, z );
     tree.mesh.scale.set( scale, scale, scale );
@@ -40,6 +40,8 @@ function createTree(x, z, scale, rotation) {
 }
 
 function createTrees() { // TODO: find a home
+    collidable_obs = [];
+    trees = [];
     var x, z, scale, rotate, delay;
     for (var i = 0; i < numObstacle; i++) {
         x = Math.random() * 600 - 300;
@@ -60,20 +62,24 @@ function createTrees() { // TODO: find a home
             startGrowth(object, 50, 10, scale);
         }.bind(this, tree.mesh, scale), delay);
 
-        collidableObstacle[tree_idx].push(tree.collidable);
-
+        collidable_obs.push(tree.collidable);
+        // collidableObstacle[tree_idx].push(tree.collidable);
     }
+    obstacles.push(trees);
+    collidableObstacle.push(collidable_obs);
 }
 
 function endTrees() {
-    for (let tree of  obstacles[tree_idx]) {
+    var temp = obstacles[tree_idx];
+    for (let tree of temp ) {
         var scale = tree.mesh.scale.x;
         var delay = delay = 2000 * Math.random();
         setTimeout(function(object, scale) {
             startShrink(object, 25, -10, scale);
         }.bind(this, tree.mesh, scale), delay);
     }
-    init_obstacle();
+    // init_obstacle();
+    
 
 }
 
