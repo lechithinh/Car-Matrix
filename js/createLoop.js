@@ -8,28 +8,41 @@
 import * as THREE from 'three'
 
 import { car } from "./createCar.js";
+import { ground } from "./createGround.js";
 import { scene } from "./createScene.js";
 import { animateGrow, animateShrink } from './addAnimation.js';
 import { renderer, camera } from './createScene.js';
 import { collidableFuels } from './game.js';
 import { endLevel } from './addUpdateLogic.js';
+
+
+
+
 function loop() {
     // handle car movement and collisions
+    
     car.update();
 
+    console.log(car.mesh.children[20])
     // handle all growth animations
     animateGrow();
     animateShrink();
 
+    
 	// render the scene
 	renderer.render(scene, camera);
-	scene.rotation.y += 0.0025
+	// scene.rotation.y += 0.0025
 
 	// check global collisions
     checkCollisions();
 
 	// call the loop function again
 	requestAnimationFrame(loop);
+
+
+
+
+
 }
 
 
