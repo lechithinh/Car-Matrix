@@ -17,13 +17,12 @@ import { endLevel } from './addUpdateLogic.js';
 
 
 
-
 function loop() {
     // handle car movement and collisions
     
     car.update();
 
-    console.log(car.mesh.children[20])
+   
     // handle all growth animations
     animateGrow();
     animateShrink();
@@ -40,6 +39,7 @@ function loop() {
 
 
 	// call the loop function again
+    
 	requestAnimationFrame(loop);
 
 }
