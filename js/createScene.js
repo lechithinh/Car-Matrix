@@ -40,6 +40,7 @@ function createScene() {
 		farPlane
 		);
 
+	
 
 	// Set the position of the camera
 	camera.position.set( 0, 400, 400 );
@@ -73,7 +74,7 @@ function createScene() {
 
 	// Listen to the screen: if the user resizes it
 	// we have to update the camera and the renderer size
-	window.addEventListener('resize', handleWindowResize, false);
+	window.addEventListener('resize', handleWindowResize);
 
 }
 

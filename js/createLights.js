@@ -7,19 +7,34 @@
 import * as THREE from 'three'
 
 
+function getSphere(){
+	const textureLoader =  new THREE.TextureLoader();
+	const sunGeo = new THREE.SphereGeometry(26, 40, 40);
+	const sunMaterial = new THREE.MeshBasicMaterial({
+		map: textureLoader.load("resource/texture/sun.jpg")
+	})
+	const sunMesh = new THREE.Mesh(sunGeo, sunMaterial);
+
+	return sunMesh;
+}
+
+
 function createLights() {
 
 	// A hemisphere light is a gradient colored light;
 	// the first parameter is the sky color, the second parameter is the ground color,
 	// the third parameter is the intensity of the light
 	var hemisphereLight = new THREE.HemisphereLight(0xaaaaaa,0x000000, .9)
-
+	
+	var sphereLight = getSphere();
+	// scene.add(sphereLight);
 	// A directional light shines from a specific direction.
 	// It acts like the sun, that means that all the rays produced are parallel.
 	var shadowLight = new THREE.DirectionalLight(0xffffff, .9);
-
+	shadowLight.add(sphereLight);
 	// Set the direction of the light
 	shadowLight.position.set(150, 350, 350);
+	// shadowLight.position.set(100, 300, 300);
 
 	// Allow shadow casting
 	shadowLight.castShadow = true;

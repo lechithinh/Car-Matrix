@@ -75,7 +75,7 @@ function createFence(radius, height, radialSegments, heightSegments, thetaLength
     // var cylinder = new THREE.Mesh(geom, mat);
     
     const geometry = new THREE.ConeGeometry(radius , height , radialSegments, heightSegments, thetaLength  ); 
-    const material = new THREE.MeshBasicMaterial( {color: color} );
+    const material = new THREE.MeshPhongMaterial( {color: color} );
     const cone = new THREE.Mesh(geometry, fenceMaterial ); 
     
     

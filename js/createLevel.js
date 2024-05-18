@@ -9,11 +9,11 @@ import {createFuels} from './createFuels.js'
 import { createBoxes,endBoxes } from './createWoodenBox.js';
 import { createTires,endTires } from './createTire.js';
 import {createTrees, endTrees} from './createTree.js';
-import {createFences, endFences} from './createFence.js';
+import {createCones, endCones} from './createFence.js';
 import { startTimer } from './addUpdateLogic.js';
 
 var box_idx, tire_idx, tree_idx, fence_idx;
-var selected_obstacle= ['WoodenBox','Tree','Tire', 'Fence']
+var selected_obstacle= [ 'Fence'] //'WoodenBox','Tree','Tire',
 
 const create_obstacle = {
     'WoodenBox': (start) => {
@@ -46,10 +46,10 @@ const create_obstacle = {
     'Fence': (start) => {
         if(start){
             fence_idx = selected_obstacle.indexOf('Fence');
-            createFences();
+            createCones();
         }
         else{
-            endFences();
+            endCones();
         }
     }
     // 'Rock': (start) => {

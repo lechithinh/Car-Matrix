@@ -71,6 +71,9 @@ function init() {
             car.mesh.children[20].distance = 0;
             car.mesh.children[21].intensity = 0;
             car.mesh.children[21].distance = 0;
+            
+            scene.background = new THREE.Color(0xbadbe4);
+        
         } else {
             // scene.background = new THREE.Color(0x000033); // Dark color for night
             hemisphereLight.visible = false;
@@ -80,6 +83,19 @@ function init() {
             car.mesh.children[20].distance = 100;
             car.mesh.children[21].intensity = 1000;
             car.mesh.children[21].distance = 100;
+            var path = "images/dark3";
+
+            var format = ".jpg";
+            var urls = [
+                path  + format, path  + format,
+                path  + format, path  + format,
+                path  + format, path  + format
+            ]
+
+            var reflectionCube = new THREE.CubeTextureLoader().load(urls);
+            reflectionCube.format = THREE.RGBAFormat;
+            scene.background = reflectionCube;
+
         }
     });
 
@@ -110,9 +126,7 @@ function init() {
 
 }
 
-// function toggleDayNight() {
-   
-// }
+
 
 window.addEventListener('load', init, false);
 
@@ -124,3 +138,4 @@ loader.load('resource/model/low_polygon_stylized_rock_free/scene.gltf',function(
 }, undefined, function(error){
     console.log(error);
 });
+
