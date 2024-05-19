@@ -61,7 +61,8 @@ function init() {
         isDay = !isDay;
 
         console.log(isDay);
-    
+        var text = document.getElementsByClassName("display_text");
+        
         if (isDay) {
             // scene.background = new THREE.Color(0x87CEEB); // Light blue for day
             hemisphereLight.visible = false;
@@ -73,7 +74,9 @@ function init() {
             car.mesh.children[21].distance = 0;
             
             scene.background = new THREE.Color(0xbadbe4);
-        
+            for (let i = 0; i < text.length; i++) {
+                text[i].style.color = 'black';
+            }
         } else {
             // scene.background = new THREE.Color(0x000033); // Dark color for night
             hemisphereLight.visible = false;
@@ -95,6 +98,12 @@ function init() {
             var reflectionCube = new THREE.CubeTextureLoader().load(urls);
             reflectionCube.format = THREE.RGBAFormat;
             scene.background = reflectionCube;
+            
+
+            // khi trời tối, đổi mầu chữ của bảng th tin
+            for (let i = 0; i < text.length; i++) {
+                text[i].style.color = '#ffa633';
+            }
 
         }
     });
@@ -132,10 +141,4 @@ window.addEventListener('load', init, false);
 
 export {collidableFuels, numObstacle, collidableObstacle, obstacles, init_obstacle}
 
-const loader = new GLTFLoader();
-loader.load('resource/model/low_polygon_stylized_rock_free/scene.gltf',function(gltf){
-    scene.add(gltf.scene);
-}, undefined, function(error){
-    console.log(error);
-});
 
