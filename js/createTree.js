@@ -48,7 +48,7 @@ function createTrees() { // TODO: find a home
         z = Math.random() * 400 - 200;
         scale = Math.random() * 1 + 0.5;
         rotate = Math.random() * Math.PI * 2;
-        delay = 2000 * Math.random()
+        delay = 2000 * Math.random();
         
         // the rule that specify no tree is in the surrounding area under 100 unit with car and fuel
         var treePosition = new THREE.Vector3( x, 0, z );
