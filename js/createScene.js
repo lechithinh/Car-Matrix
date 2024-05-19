@@ -10,6 +10,7 @@
 
 import * as THREE from 'three'
 import {OrbitControls} from 'orbit'
+
 // import scene  from './game.js';
 
 var scene, camera, fieldOfView,  aspectRatio, nearPlane, farPlane, renderer, container;
@@ -26,7 +27,7 @@ function createScene() {
 
 	// Add a fog effect to the scene; same color as the
 	// background color used in the style sheet
-	scene.fog = new THREE.Fog(0xbadbe4, 500, 900);
+	// scene.fog = new THREE.Fog(0xbadbe4, 500, 900);
 
 	// Create the camera
 	aspectRatio = WIDTH / HEIGHT;
@@ -46,6 +47,8 @@ function createScene() {
 	camera.position.set( 0, 400, 400 );
     camera.lookAt( 0, 0, 0 );
 
+	
+
 	// Create the renderer
 	renderer = new THREE.WebGLRenderer({
 		// Allow transparency to show the gradient background
@@ -59,6 +62,8 @@ function createScene() {
 
 	const controls = new OrbitControls( camera, renderer.domElement );
 	controls.update();
+
+	
 
 	// Define the size of the renderer; in this case,
 	// it will fill the entire screen
@@ -86,5 +91,8 @@ function handleWindowResize() {
 	camera.aspect = WIDTH / HEIGHT;
 	camera.updateProjectionMatrix();
 }
+
+
+
 
 export {createScene, scene, camera, renderer}
