@@ -27,7 +27,7 @@ function loop() {
     animateGrow();
     animateShrink();
 
-
+    camera.lookAt(car.mesh.position)
     
 	// render the scene
 	renderer.render(scene, camera);

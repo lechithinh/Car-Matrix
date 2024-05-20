@@ -10,6 +10,7 @@
 
 import * as THREE from 'three'
 import {OrbitControls} from 'orbit'
+import { car } from './createCar.js'
 
 // import scene  from './game.js';
 
@@ -40,12 +41,13 @@ function createScene() {
 		nearPlane,
 		farPlane
 		);
-
+	
 	
 
 	// Set the position of the camera
+	// console.log(car)
 	camera.position.set( 0, 400, 400 );
-    camera.lookAt( 0, 0, 0 );
+    camera.lookAt(0, 0, 0);
 
 	
 
