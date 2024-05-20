@@ -20,7 +20,7 @@ function Cone() {
 
     this.mesh = new THREE.Object3D();
     var texturepath = 'resource/texture/traffic_cone.jpg';
-    console.log("path: ",texturepath)
+    // console.log("path: ",texturepath)
     // var fence =  createCylinder( 1, 30, 30, 4, Colors.green, 0, 90, 0 );
     var fence = createFence(30, 60, 10, 1, 10,Colors.white, 0, 10, 0, false, texturepath)
     var box = createBox(45, 1,45,Colors.red,0, 0, 0,false)
@@ -36,7 +36,7 @@ function Cone() {
 
 function createNewCone(x, z, scale, rotation) {
     var fence = new Cone();
-    console.log('Hiiii', obstacles[fence_idx]);
+    // console.log('Hiiii', obstacles[fence_idx]);
     fences.push(fence);
     scene.add(fence.mesh);
     fence.mesh.position.set( x, 0, z );

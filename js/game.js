@@ -66,11 +66,10 @@ function init() {
     var moon = getSphere("resource/texture/moon.jpg");
     shadowLight.add(sun);
 
-    createCloud();
+    // createCloud();
     // cloud.position.set(150, 350, 350)
 	// console.log("cloud", cloud);
 	// scene.add(cloud);
-    
     
 
     
@@ -132,18 +131,11 @@ function init() {
     });
 
     
+    
+    
+    
 
 
-
-
-
-    // document.getElementById('toggleButton').addEventListener('click', function(){
-    //     var { hemisphereLight, shadowLight } = createLights();
-    //     scene.add(hemisphereLight);
-    //     hemisphereLight.visible = false;
-    //     scene.add(shadowLight);
-    // })
-    // var ground = createGround();
     createGround(); 
     //scene.add(ground);
 

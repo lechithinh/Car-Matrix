@@ -14,7 +14,7 @@ import { startTimer } from './addUpdateLogic.js';
 import { createRocks } from './creataRock.js';
 
 var box_idx, tire_idx, tree_idx, fence_idx, rock_idx;
-var selected_obstacle= ['Fence'] //'WoodenBox','Tree','Tire',
+var selected_obstacle= ['Tree'] //'WoodenBox','Tree','Tire',
 
 const create_obstacle = {
     'WoodenBox': (start) => {
