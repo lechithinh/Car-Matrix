@@ -11,10 +11,10 @@ import { createTires,endTires } from './createTire.js';
 import {createTrees, endTrees} from './createTree.js';
 import {createCones, endCones} from './createFence.js';
 import { startTimer } from './addUpdateLogic.js';
-import { createRocks } from './creataRock.js';
+import { createRocks,endRocks } from './createRock.js';
 
 var box_idx, tire_idx, tree_idx, fence_idx, rock_idx;
-var selected_obstacle= ['Tree'] //'WoodenBox','Tree','Tire',
+var selected_obstacle= ['Rock'] //'WoodenBox','Tree','Tire',
 
 const create_obstacle = {
     'WoodenBox': (start) => {
