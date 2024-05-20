@@ -25,7 +25,7 @@ import { ImprovedNoise } from 'improvenoise';
 
 
 var obstacles = [], 
-    numObstacle = 200, 
+    numObstacle = 20, 
     collidableObstacle = [],
     collidableFuels = [[]];
 

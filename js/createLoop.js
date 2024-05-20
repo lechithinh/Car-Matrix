@@ -14,8 +14,8 @@ import { animateGrow, animateShrink } from './addAnimation.js';
 import { renderer, camera } from './createScene.js';
 import { collidableFuels } from './game.js';
 import { endLevel } from './addUpdateLogic.js';
-
-
+import { selected_obstacle } from './createLevel.js';
+import { collidableObstacle } from './game.js';
 
 function loop() {
     // handle car movement and collisions
@@ -75,11 +75,20 @@ function checkCollisions() {
 
 function objectInBound(object, objectList) { // TODO: annotate
     var o = get_xywh(object);
-    for (let object of objectList) {
+    for (let [idx, object] of objectList.entries()) {
         // console.log("obj lst: ",objectList)
         // console.log("obj: ",object)
+        // console.log(idx);
         for (let target of object) {
-            var t = get_xywh(target);
+            if (objectList == collidableObstacle && selected_obstacle[idx] == 'Rock'){
+                // console.log(target);
+                var t = get_xywh_model(target);
+            }
+    
+            else{
+                var t = get_xywh(target);
+            } 
+
             if ((Math.abs(o.x - t.x) * 2 < t.w + o.w) && (Math.abs(o.y - t.y) * 2 < t.h + o.h)) {
                 // console.log(o)
                 return true;
@@ -88,7 +97,17 @@ function objectInBound(object, objectList) { // TODO: annotate
     }
     return false;
 }
-
+function get_xywh_model(model){
+    // model is an arr
+    // var globalPosition = new THREE
+    var x = model[1];
+    var y = model[2];
+    var w = model[0].x;
+    w = w - w *0.4; 
+    var h = model[0].z;
+    h = h - h*0.3;
+    return { 'x': x, 'y': y, 'w': w, 'h': h };
+}
 function get_xywh(object) {  // TODO: annotate
     var p = object.geometry.parameters;
     var globalPosition = new THREE.Vector3(0., 0., 0.);
