@@ -88,6 +88,7 @@ function init() {
             nightLight.visible = false;
             car.mesh.children[20].intensity = 0;
             car.mesh.children[20].distance = 0;
+            
             car.mesh.children[21].intensity = 0;
             car.mesh.children[21].distance = 0;
             
