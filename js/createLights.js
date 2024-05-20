@@ -45,7 +45,7 @@ function createLights() {
 	// to activate the lights, just add them to the scene
 
 	var nightLight = new THREE.DirectionalLight(0x0000ff, 0.5);
-	nightLight.position.set(1, 1, 1).normalize();
+	nightLight.position.set(150, 350, 350);
 
 	nightLight.visible = false; // Hide night light initially
 

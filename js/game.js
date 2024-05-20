@@ -88,6 +88,7 @@ function init() {
             nightLight.visible = false;
             car.mesh.children[20].intensity = 0;
             car.mesh.children[20].distance = 0;
+            
             car.mesh.children[21].intensity = 0;
             car.mesh.children[21].distance = 0;
             
@@ -99,10 +100,10 @@ function init() {
             // scene.background = new THREE.Color(0x000033); // Dark color for night
             shadowLight.remove(sun);
             
-            shadowLight.add(moon);
+            nightLight.add(moon);
 
             hemisphereLight.visible = false;
-            shadowLight.visible = true;
+            shadowLight.visible = false;
             nightLight.visible = true;
             car.mesh.children[20].intensity = 1000;
             car.mesh.children[20].distance = 100;
