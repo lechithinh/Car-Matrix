@@ -4,6 +4,7 @@ import {numObstacle, obstacles,collidableObstacle, init_obstacle } from "./game.
 import { car } from './createCar.js';
 import { fuel } from './createFuels.js';
 import { scene } from './createScene.js';
+import {rock_idx} from './createLevel.js';
 
 var rocks;
 var collidable_obs;
@@ -26,13 +27,25 @@ function onLoad(gltf){
     delay = 2000 * Math.random();
 
     model.position.set(x,0,z)
+    gltf.scene.traverse(function(child) {
+        if (child.isMesh) {
+          child.castShadow = true;
+          child.receiveShadow = true;
+        }
+    })
     scene.add(model);
 
 }
 function createRocks(){
+    collidable_obs = [];
+    rocks = [];
+    var x, z, scale, rotate, delay;
     for (var i =0;i<numObstacle;i++){
-        loader.load('resource/model/low_polygon_stylized_rock_free/scene.gltf',onLoad);
+        var rock = loader.load('resource/model/low_polygon_stylized_rock_free/scene.gltf',onLoad);
+
     }
 }
+
+
 
 export {createRocks}

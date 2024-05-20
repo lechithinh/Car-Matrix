@@ -43,9 +43,25 @@ function createTrees() { // TODO: find a home
     collidable_obs = [];
     trees = [];
     var x, z, scale, rotate, delay;
+    var percentage = numObstacle / 4
     for (var i = 0; i < numObstacle; i++) {
-        x = Math.random() * 600 - 300;
-        z = Math.random() * 400 - 200;
+        if (i <= percentage){
+            x = Math.random() * 2000 - 300;
+            z = Math.random() * 1700 - 200;
+        }else if(i > percentage && i <= 2 * percentage){
+            x = -(Math.random() * 2000 - 300);
+            z = -(Math.random() * 1700 - 200);
+        }else if ((i > 2 * percentage) && (i <= 3 * percentage)){
+            x = (Math.random() * 2000 - 300);
+            z = -(Math.random() * 1700 - 200);
+        }else if ((i > 3 * percentage) && (i <= 4 * percentage)){
+            x = -(Math.random() * 2000 - 300);
+            z = (Math.random() * 1700 - 200);
+        }else{
+            x = (Math.random() * 2000 - 300);
+            z = (Math.random() * 1700 - 200);
+        }
+       
         scale = Math.random() * 1 + 0.5;
         rotate = Math.random() * Math.PI * 2;
         delay = 2000 * Math.random();

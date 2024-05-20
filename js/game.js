@@ -25,7 +25,7 @@ import { ImprovedNoise } from 'improvenoise';
 
 
 var obstacles = [], 
-    numObstacle = 10, 
+    numObstacle = 200, 
     collidableObstacle = [],
     collidableFuels = [[]];
 
@@ -52,6 +52,8 @@ function init() {
 
 
 	createScene();
+    
+
 
     var { hemisphereLight, shadowLight, nightLight} = createLights();
     scene.add(hemisphereLight);
@@ -60,7 +62,16 @@ function init() {
     hemisphereLight.visible = true;
     shadowLight.visible = true;
     nightLight.visible = false;
+    var sun = getSphere("resource/texture/sun.jpg");
+    var moon = getSphere("resource/texture/moon.jpg");
+    shadowLight.add(sun);
 
+    createCloud();
+    // cloud.position.set(150, 350, 350)
+	// console.log("cloud", cloud);
+	// scene.add(cloud);
+    
+    
 
     
     document.getElementById('toggleButton').addEventListener('click', function(){
@@ -70,7 +81,8 @@ function init() {
         var text = document.getElementsByClassName("display_text");
         
         if (isDay) {
-            // scene.background = new THREE.Color(0x87CEEB); // Light blue for day
+            shadowLight.remove(moon);
+            shadowLight.add(sun);
             hemisphereLight.visible = false;
             shadowLight.visible = true;
             nightLight.visible = false;
@@ -85,8 +97,12 @@ function init() {
             }
         } else {
             // scene.background = new THREE.Color(0x000033); // Dark color for night
+            shadowLight.remove(sun);
+            
+            shadowLight.add(moon);
+
             hemisphereLight.visible = false;
-            shadowLight.visible = false;
+            shadowLight.visible = true;
             nightLight.visible = true;
             car.mesh.children[20].intensity = 1000;
             car.mesh.children[20].distance = 100;
@@ -114,10 +130,6 @@ function init() {
         }
     });
 
-    var cloud = createCloud();
-    cloud.position.set(150, 350, 350)
-	console.log("cloud", cloud);
-	scene.add(cloud);
     
 
 
@@ -147,6 +159,16 @@ function init() {
 	loop();
     // var isDay = document.getElementById('toggleButton').addEventListener('click', toggleDayNight);
 
+}
+function getSphere(textureURL){
+	const textureLoader =  new THREE.TextureLoader();
+	const sunGeo = new THREE.SphereGeometry(26, 40, 40);
+	const sunMaterial = new THREE.MeshBasicMaterial({
+		map: textureLoader.load(textureURL)
+	})
+	const sunMesh = new THREE.Mesh(sunGeo, sunMaterial);
+
+	return sunMesh;
 }
 
 
@@ -325,28 +347,28 @@ function createCloud(){
         }
     `;
 
-    const geometry = new THREE.BoxGeometry( 400, 400, 400 );
-    const material = new THREE.RawShaderMaterial( {
-        glslVersion: THREE.GLSL3,
-        uniforms: {
-            base: { value: new THREE.Color( 0xff0000 ) },
-            map: { value: texture },
-            cameraPos: { value: new THREE.Vector3() },
-            threshold: { value: 0.25 },
-            opacity: { value: 0.25 },
-            range: { value: 0.1 },
-            steps: { value: 100 },
-            frame: { value: 0 }
-        },
-        vertexShader,
-        fragmentShader,
-        side: THREE.BackSide,
-        transparent: true
-    } );
+    // const geometry = new THREE.BoxGeometry( 400, 400, 400 );
+    // const material = new THREE.RawShaderMaterial( {
+    //     glslVersion: THREE.GLSL3,
+    //     uniforms: {
+    //         base: { value: new THREE.Color( 0xff0000 ) },
+    //         map: { value: texture },
+    //         // cameraPos: { value: new THREE.Vector3() },
+    //         threshold: { value: 0.25 },
+    //         opacity: { value: 0.25 },
+    //         range: { value: 0.1 },
+    //         steps: { value: 100 },
+    //         frame: { value: 0 }
+    //     },
+    //     vertexShader,
+    //     fragmentShader,
+    //     side: THREE.BackSide,
+    //     transparent: true
+    // } );
 
-    var mesh = new THREE.Mesh( geometry, material );
+    // var mesh = new THREE.Mesh( geometry, material );
 
-    return mesh;
+    // return mesh;
     
 
 }
