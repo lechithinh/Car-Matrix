@@ -14,10 +14,32 @@ import { startTimer } from './addUpdateLogic.js';
 import { createRocks,endRocks } from './createRock.js';
 
 var box_idx, tire_idx, tree_idx, fence_idx, rock_idx;
-var selected_obstacle= ['Rock'] //'WoodenBox','Tree','Tire',
+var selected_obstacle= [] //'WoodenBox','Tree','Tire',
+var num_obstacle;
+
+function level_obstacle(level){
+    if(level == 'simple'){
+        selected_obstacle.push('Tree');
+        num_obstacle = 5;
+    }
+    else if (level == 'medium'){
+        selected_obstacle.push('Tree','Box');
+        num_obstacle = 10;
+    }
+    else{
+        selected_obstacle.push('Tree','Box','Fence','Rock');
+        num_obstacle = 15;
+    }
+}
+
+
+document.addEventListener('DOMContentLoaded',(event) => {
+    let level = localStorage.getItem('level');
+    level_obstacle(level);
+})
 
 const create_obstacle = {
-    'WoodenBox': (start) => {
+    'Box': (start) => {
         if(start){
             box_idx = selected_obstacle.indexOf('WoodenBox');
             createBoxes();
@@ -78,4 +100,4 @@ function createLevel() {
     startTimer();
 }
 
-export {createLevel,box_idx,tire_idx,tree_idx,fence_idx,rock_idx, selected_obstacle, create_obstacle}
+export {createLevel,box_idx,tire_idx,tree_idx,fence_idx,rock_idx, selected_obstacle, create_obstacle, level_obstacle, num_obstacle}

@@ -1,11 +1,11 @@
 import * as THREE from 'three'
 
-import {numObstacle, obstacles,collidableObstacle, init_obstacle } from "./game.js";
+import { obstacles,collidableObstacle, init_obstacle } from "./game.js";
 import { car } from './createCar.js';
 import { fuel } from './createFuels.js';
 import { createBox } from './createObjects.js';
 import { Colors } from './color.js';
-import { box_idx } from './createLevel.js';
+import { box_idx,num_obstacle } from './createLevel.js';
 import { scene } from './createScene.js';
 import { startGrowth, startShrink } from './addAnimation.js';
 
@@ -37,8 +37,8 @@ function createBoxes() { // TODO: find a home
     collidable_obs = [];
     boxes = [];
     var x, z, scale, rotate, delay;
-    var percentage = numObstacle / 4;
-    for (var i = 0; i < numObstacle; i++) {
+    var percentage = num_obstacle / 4;
+    for (var i = 0; i < num_obstacle; i++) {
         if (i <= percentage){
             x = Math.random() * 2000 - 300;
             z = Math.random() * 1700 - 200;

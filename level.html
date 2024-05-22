@@ -66,7 +66,7 @@
         <h2 class="pb-2 text-light fw-bold">Game Level</h2>
     
         <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5" >
-          <div class="col" onclick="start()">
+          <div class="col" onclick="selectLevel('simple')" >
             <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('./images/choose_car1.jpg');">
               <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
                 <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Simple</h3>
@@ -75,7 +75,7 @@
             </div>
           </div>
     
-          <div class="col" onclick="start()">
+          <div class="col" onclick="selectLevel('medium')">
             <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('./images/choose_car1.jpg');">
               <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
                 <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Medium</h3>
@@ -84,7 +84,7 @@
             </div>
           </div>
     
-          <div class="col" onclick="start()">
+          <div class="col" onclick="selectLevel('hard')">
             <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('./images/choose_car1.jpg');">
               <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
                 <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Hard</h3>
@@ -96,10 +96,13 @@
       </div>
       </div>
 
-    <script>
-        function start() {
-            window.location.href = 'index.html';
+      <script>
+        function selectLevel(level){
+          localStorage.setItem('level',level);
+          window.location.href = 'index.html';
         }
-    </script>
+      </script>
+
+
 </body>
 </html>

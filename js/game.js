@@ -25,10 +25,20 @@ import { ImprovedNoise } from 'improvenoise';
 
 
 var obstacles = [], 
-    numObstacle = 20, 
+    // numObstacle = {}, 
     collidableObstacle = [],
     collidableFuels = [[]];
 
+
+// function init_num_obstacle(level){
+//     if(level == 'simple'){
+//         numObstacle['tree'] = 5;
+//     }
+//     else if (level == 'medium'){
+//         numObstacle['tree'] = 10;
+//         numObstacle['box'] = 10;
+//     }
+// }
 
 function init_obstacle(){
     collidableObstacle = [];
@@ -165,10 +175,10 @@ function getSphere(textureURL){
 }
 
 
-
+console.log(window.level);
 window.addEventListener('load', init, false);
 
-export {collidableFuels, numObstacle, collidableObstacle, obstacles, init_obstacle}
+export {collidableFuels, collidableObstacle, obstacles, init_obstacle}
 
 
 

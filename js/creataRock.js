@@ -1,6 +1,6 @@
 import {GLTFLoader} from 'gltf'
 import * as THREE from 'three'
-import {numObstacle, obstacles,collidableObstacle, init_obstacle } from "./game.js";
+import { obstacles,collidableObstacle, init_obstacle } from "./game.js";
 import { car } from './createCar.js';
 import { fuel } from './createFuels.js';
 import { scene } from './createScene.js';

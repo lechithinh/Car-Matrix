@@ -1,16 +1,16 @@
 import {GLTFLoader} from 'gltf'
 import * as THREE from 'three'
-import {numObstacle, obstacles,collidableObstacle, init_obstacle } from "./game.js";
+import {obstacles,collidableObstacle, init_obstacle } from "./game.js";
 import { car } from './createCar.js';
 import { fuel } from './createFuels.js';
 import { scene } from './createScene.js';
-import {rock_idx} from './createLevel.js';
+import {rock_idx, num_obstacle} from './createLevel.js';
 import { startGrowth,startShrink } from './addAnimation.js';
 var rocks;
 var collidable_obs;
 var x, z, scale, rotate, delay;
 var i;
-var percentage = numObstacle / 4;
+var percentage = num_obstacle / 4;
 
 const loader = new GLTFLoader();
 // loader.load('resource/model/low_polygon_stylized_rock_free/scene.gltf',function(gltf){
@@ -73,7 +73,7 @@ async function createRocks(){
     collidable_obs = [];
     rocks = [];
     
-    for (i =0;i<numObstacle;i++){
+    for (i =0;i<num_obstacle;i++){
         // var rock = loader.load('resource/model/low_polygon_stylized_rock_free/scene.gltf',onLoad);
 
         var rock = await loadModel('resource/model/low_polygon_stylized_rock_free/scene.gltf').then((result) =>{

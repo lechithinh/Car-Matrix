@@ -1,10 +1,10 @@
 import * as THREE from 'three'
-import {numObstacle, obstacles,collidableObstacle, init_obstacle } from "./game.js";
+import { obstacles,collidableObstacle, init_obstacle } from "./game.js";
 import { car } from './createCar.js';
 import { fuel } from './createFuels.js';
 import { createCylinder } from './createObjects.js';
 import { Colors } from './color.js';
-import { tree_idx } from './createLevel.js';
+import { tree_idx, num_obstacle } from './createLevel.js';
 import { scene } from './createScene.js';
 import { startGrowth, startShrink } from './addAnimation.js';
 
@@ -43,8 +43,8 @@ function createTrees() { // TODO: find a home
     collidable_obs = [];
     trees = [];
     var x, z, scale, rotate, delay;
-    var percentage = numObstacle / 4
-    for (var i = 0; i < numObstacle; i++) {
+    var percentage = num_obstacle / 4
+    for (var i = 0; i < num_obstacle; i++) {
         if (i <= percentage){
             x = Math.random() * 2000 - 300;
             z = Math.random() * 1700 - 200;
