@@ -14,7 +14,6 @@ var collidable_obs;
 function WoodenBox(){
     this.mesh = new THREE.Object3D();
     var texturepath = 'resource/texture/box_texture.png';
-    console.log("path: ",texturepath)
     var bottom = createBox(30,30,30,Colors.golden,0, 15, 0,false,texturepath);
 
     this.mesh.add(bottom);

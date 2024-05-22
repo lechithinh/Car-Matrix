@@ -76,9 +76,6 @@ function checkCollisions() {
 function objectInBound(object, objectList) { // TODO: annotate
     var o = get_xywh(object);
     for (let [idx, object] of objectList.entries()) {
-        // console.log("obj lst: ",objectList)
-        // console.log("obj: ",object)
-        // console.log(idx);
         for (let target of object) {
             if (objectList == collidableObstacle && selected_obstacle[idx] == 'Rock'){
                 // console.log(target);
@@ -122,4 +119,4 @@ function get_xywh(object) {  // TODO: annotate
     return { 'x': x, 'y': y, 'w': w, 'h': h };
 }
 
-export { loop, get_xywh, objectInBound }
+export { loop, objectInBound }

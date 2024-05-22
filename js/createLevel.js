@@ -23,11 +23,11 @@ function level_obstacle(level){
         num_obstacle = 5;
     }
     else if (level == 'medium'){
-        selected_obstacle.push('Tree','Box');
+        selected_obstacle.push('Tree','WoodenBox');
         num_obstacle = 10;
     }
     else{
-        selected_obstacle.push('Tree','Box','Fence','Rock');
+        selected_obstacle.push('Tree','WoodenBox','Fence','Rock');
         num_obstacle = 15;
     }
 }
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded',(event) => {
 })
 
 const create_obstacle = {
-    'Box': (start) => {
+    'WoodenBox': (start) => {
         if(start){
             box_idx = selected_obstacle.indexOf('WoodenBox');
             createBoxes();
