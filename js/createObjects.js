@@ -4,7 +4,6 @@ function createBox(dx, dy, dz, color, x, y, z, notFlatShading,texture_path) {
     var geom = new THREE.BoxGeometry(dx, dy, dz);
     // console.log(texture_path)
     if(texture_path){
-        console.log("hi")
         var texture = new THREE.TextureLoader().load(texture_path);
         texture.colorSpace = THREE.SRGBColorSpace;
         texture.wrapS = THREE.RepeatWrapping;
