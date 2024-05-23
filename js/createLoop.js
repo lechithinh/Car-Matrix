@@ -14,7 +14,7 @@ import { animateGrow, animateShrink } from './addAnimation.js';
 import { renderer, camera } from './createScene.js';
 import { collidableFuels, fireflies, fireflyCount, isDay} from './game.js';
 import { endLevel } from './addUpdateLogic.js';
-import { selected_obstacle } from './createLevel.js';
+import { box_idx, selected_obstacle } from './createLevel.js';
 import { collidableObstacle, clouds} from './game.js';
 
 function loop() {
@@ -104,12 +104,13 @@ function objectCollidedWith(object, collidableMeshList) {  // TODO: place elsewh
 function checkCollisions() {
 
     // mark victory and advance level
-    if (objectInBound(car.collidable, collidableFuels)) {
+    var [isCrash, check] = objectInBound(car.collidable, collidableFuels)
+    if (isCrash) {
         endLevel();
     }
 }
 
-function objectInBound(object, objectList) { // TODO: annotate
+function objectInBound(object, objectList, flag=false) { // TODO: annotate
     var o = get_xywh(object);
     for (let [idx, object] of objectList.entries()) {
         for (let target of object) {
@@ -124,11 +125,16 @@ function objectInBound(object, objectList) { // TODO: annotate
 
             if ((Math.abs(o.x - t.x) * 2 < t.w + o.w) && (Math.abs(o.y - t.y) * 2 < t.h + o.h)) {
                 // console.log(o)
-                return true;
+                if(idx === box_idx){
+                    return [true, target]
+                }else{
+                    return [true, null];
+                }
+                
             }
         }
     }
-    return false;
+    return [false, null];
 }
 function get_xywh_model(model){
     // model is an arr

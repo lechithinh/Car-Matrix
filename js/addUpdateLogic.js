@@ -16,7 +16,7 @@ function endLevel() {
     updateStatus();
     stopTimer();
 
-    setTimeout(createLevel, 3000);
+    setTimeout(createLevel, 30000);
 }
 
 function resetGame() {
