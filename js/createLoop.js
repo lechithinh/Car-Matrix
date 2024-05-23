@@ -12,16 +12,16 @@ import { ground } from "./createGround.js";
 import { scene } from "./createScene.js";
 import { animateGrow, animateShrink } from './addAnimation.js';
 import { renderer, camera } from './createScene.js';
-import { collidableFuels } from './game.js';
+import { collidableFuels, fireflies, fireflyCount, isDay} from './game.js';
 import { endLevel } from './addUpdateLogic.js';
 import { selected_obstacle } from './createLevel.js';
-import { collidableObstacle } from './game.js';
+import { collidableObstacle, clouds} from './game.js';
 
 function loop() {
     // handle car movement and collisions
     
     car.update();
-
+    
    
     // handle all growth animations
     animateGrow();
@@ -32,6 +32,41 @@ function loop() {
 	// render the scene
 	renderer.render(scene, camera);
 	// scene.rotation.y += 0.0025
+    // console.log(clouds[0].children[0].material)
+    var numCloud = clouds.length;
+    for (let i = 0; i < numCloud; i++){
+        const cloud = clouds[i];
+        if (cloud.position.x >= 18000){
+            cloud.position.x += 2;
+        }else{
+            cloud.position.x -=2;
+        }
+    }
+    if (isDay === false){
+        for (let i = 0; i < fireflyCount; i++) {
+            const firefly = fireflies[i];
+    
+            // Nếu đom đóm đi quá xa, đổi hướng
+            if (firefly.mesh.position.x >= 100  && firefly.mesh.position.y >= 100) {
+              firefly.mesh.position.x -= 2;
+            //   firefly.mesh.position.z -= 3;
+              firefly.light.position.x -= 2;
+            //   firefly.light.position.z -= 3
+            }else if(firefly.mesh.position.x < 100 && firefly.mesh.position.y < 100){
+                firefly.mesh.position.x += 2;
+                firefly.light.position.x += 2;
+            }
+            else if(firefly.mesh.position.y >= 100 && firefly.mesh.position.x >= 100){
+                // firefly.mesh.position.x += 2;
+                firefly.mesh.position.y -= 3;
+                // firefly.light.position.x += 2;
+                firefly.light.position.y -= 3
+            }else if(firefly.mesh.position.y < 100 && firefly.mesh.position.x < 100){
+                firefly.mesh.position.y += 3;
+                firefly.light.position.y += 3
+            }
+          }
+    }
 
 
     // check global collisions
@@ -41,6 +76,7 @@ function loop() {
 	// call the loop function again
     
 	requestAnimationFrame(loop);
+
 
 }
 
