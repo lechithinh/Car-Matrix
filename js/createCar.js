@@ -9,6 +9,7 @@ import { createBox, createTire } from './createObjects.js';
 import { scene } from "./createScene.js";
 import { objectInBound } from './createLoop.js';
 import { collidableObstacle } from './game.js';
+import { box_idx } from './createLevel.js';
 
 // Color for car
 // console.log(Colors.blue)
@@ -114,7 +115,12 @@ function Car() {
                 this.mesh.updateMatrixWorld();
             }
             currentSpeed = 0;
+            var audio = new Audio("../effects/clank-car-crash-collision-6206.mp3")
+            audio.play()
             is_moving = false;
+            if(box_idx !== null){
+                console.log("Not box")
+            }
         }
 
         // update speed according to acceleration

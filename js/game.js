@@ -11,7 +11,8 @@ import { loop } from './createLoop.js'
 import { car } from './createCar.js'
 import * as THREE from 'three'
 import { ImprovedNoise } from 'improvenoise';
-
+import { createGroupOfCloud, createCloud } from './createCloud.js'
+// import { createFireFly } from './createFireFly.js'
 
 // import {cloud} from "./THREE_Cloud/Cloud.js"
 // import { CloudShader } from './THREE.cloud/CloudShader.js';
@@ -52,54 +53,41 @@ function init_obstacle(){
 }
 
 var isDay = true;   
-function createCloud() {
-    const cloudGroup = new THREE.Group();
+var fireflyCount = 300;
+var fireflies;
+var clouds;
 
-    // Define parameters for cloud generation
-    const numSpheres = 50; // Increase number of spheres
-    const minRadius = 5; // Increase minimum radius
-    const maxRadius = 15; // Increase maximum radius
-    const maxYPosition = 10; // Increase maximum Y position
-    const minYPosition = -10; // Decrease minimum Y position
-    const minZPosition = -30; // Decrease minimum Z position
-    const maxZPosition = 30; // Increase maximum Z position
+function createFireFly(){
+    fireflies = [];  // Đảm bảo fireflies là một mảng
+    fireflyCount = 100;
+// Tạo hình cầu cho đom đóm
+    const geometry = new THREE.SphereGeometry(2, 16, 16);
+    const material = new THREE.MeshBasicMaterial({ color: 0xffff00 });
 
-    // Create spheres and add them to the cloud group
-    for (let i = 0; i < numSpheres; i++) {
-        const radius = Math.random() * (maxRadius - minRadius) + minRadius;
-        const sphereGeometry = new THREE.SphereGeometry(radius, 32, 32); // Increase segments for smoother surface
-        const sphereMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.8 });
-        const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
-        sphere.castShadow = true;
-
-        // Ensure spheres are mainly distributed horizontally
-        const x = Math.random() * (maxRadius * 2) - maxRadius + 400;
-        const y = Math.random() * (maxYPosition - minYPosition) + minYPosition + 350;
-        const z = Math.random() * (maxZPosition - minZPosition) + minZPosition + 300;
-
-        sphere.position.set(x, y, z);
-
-        cloudGroup.add(sphere);
-    }
-
-    return cloudGroup;
-}
-
-function createGroupOfCloud(gridSize, cloudDistance){
+    for (let i = 0; i < fireflyCount; i++) {
+    const firefly = new THREE.Mesh(geometry, material);
     
-    const clouds = [];
+    // Đặt vị trí ngẫu nhiên cho mỗi đom đóm
+    firefly.position.set(
+        (Math.random()*100 - 0.5) * 10,
+        (Math.random()*50 - 0.5) * 10,
+        (Math.random()*300 - 0.5) * 10
+    );
 
-    for (let i = 0; i < gridSize; i++) {
-        for (let j = 0; j < gridSize; j++) {
-            const cloud = createCloud();
-            cloud.position.x = (i - gridSize / 2) * cloudDistance; // Center the grid
-            cloud.position.y = Math.random() * 20 - 10; // Randomize Y position
-            cloud.position.z = (j - gridSize / 2) * cloudDistance; // Center the grid
-            clouds.push(cloud);
-        }
-    }
+  // Tạo ánh sáng cho mỗi đom đóm
+  const light = new THREE.PointLight(0xffff00, 1000, 100);
+  light.position.copy(firefly.position);
+//   light.castShadow = true;
 
-    scene.add(...clouds);
+  // Thêm ánh sáng vào scene và đom đóm vào mảng quản lý
+  scene.add(light);
+  fireflies.push({ mesh: firefly, light: light, direction: new THREE.Vector3(
+    (Math.random() - 0.5) * 0.02,
+    (Math.random() - 0.5) * 0.02,
+    (Math.random() - 0.5) * 0.02
+  )});
+  scene.add(firefly);
+}
 }
 
 
@@ -108,7 +96,6 @@ init_obstacle();
 
 
 // Add cloud to the scene
-
 
 
 function init() {
@@ -131,17 +118,23 @@ function init() {
     var moon = getSphere("resource/texture/moon.jpg");
     shadowLight.add(sun);
 
-
-        
+    clouds = createGroupOfCloud(5, 50, 0xffffff);
+    scene.add(...clouds);
     document.getElementById('toggleButton').addEventListener('click', function(){
         isDay = !isDay;
-
-        console.log(isDay);
+        
+        // console.log(isDay);
         var text = document.getElementsByClassName("display_text");
         
         if (isDay) {
+            // console.log(clouds[0].material)
+
+            // scene.remove(...clouds)
+            // clouds = createGroupOfCloud(5, 50, 0xffffff);
+            // scene.add(...clouds);
             shadowLight.remove(moon);
             shadowLight.add(sun);
+            
             hemisphereLight.visible = false;
             shadowLight.visible = true;
             nightLight.visible = false;
@@ -156,9 +149,9 @@ function init() {
                 text[i].style.color = 'black';
             }
         } else {
-            // scene.background = new THREE.Color(0x000033); // Dark color for night
+
             shadowLight.remove(sun);
-            
+            createFireFly();
             nightLight.add(moon);
 
             hemisphereLight.visible = false;
@@ -192,10 +185,18 @@ function init() {
 
     
  
-    createGroupOfCloud(5, 50);
 
-    createGroupOfCloud(5, 100);
     
+
+    // createGroupOfCloud(5, 100);
+
+    //Create domdom
+    
+
+    
+    
+
+
     
 
 
@@ -231,6 +232,6 @@ function getSphere(textureURL){
 console.log(window.level);
 window.addEventListener('load', init, false);
 
-export {collidableFuels, collidableObstacle, obstacles, init_obstacle}
+export {collidableFuels, collidableObstacle, obstacles, init_obstacle, fireflies, fireflyCount, clouds, isDay}
 
 
