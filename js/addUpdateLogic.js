@@ -64,8 +64,25 @@ function updateTimer() {
     updateFuelDisplay();
 
     if (time <= 0 || fuelLeft <= 0) {
-        alert('Game over');
-        resetGame();
+
+        // const modalButton = document.getElementById('modalButton');
+
+        var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'));
+        myModal.show();
+        
+
+        stopTimer();
+        document.getElementById('homeButton').addEventListener('click', function() {
+            window.location.href = '../level.html';
+        });
+
+        document.getElementById('playButton').addEventListener('click', function() {
+            myModal.hide();
+            resetGame();
+        });
+
+
+
     }
 }
 
