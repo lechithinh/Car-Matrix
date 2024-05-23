@@ -101,6 +101,8 @@ function Car() {
         return M;
     }
 
+    
+    
     this.update = function() {
         var sign, R, currentAngle;
         var is_moving = currentSpeed != 0;
@@ -109,17 +111,34 @@ function Car() {
         this.mesh.updateMatrixWorld();
 
         // disallow travel through trees
-        if (objectInBound(this.collidable, collidableObstacle) && is_moving) {
-            while (objectInBound(this.collidable, collidableObstacle)) {
+        var [isCrash, posBoxMesh] = objectInBound(this.collidable, collidableObstacle);
+        if ( isCrash && is_moving) {
+            while (objectInBound(this.collidable, collidableObstacle)[0]) {
                 this.mesh.position.addScaledVector(direction, -currentSpeed);
                 this.mesh.updateMatrixWorld();
             }
             currentSpeed = 0;
             var audio = new Audio("../effects/clank-car-crash-collision-6206.mp3")
             audio.play()
+            
             is_moving = false;
-            if(box_idx !== null){
-                console.log("Not box")
+            if(posBoxMesh !== null){
+                // console.log(posBoxMesh)
+              // Calculate the opposite direction vector based on the collision direction
+              var collisionDirection = direction.clone().normalize();
+              var oppositeDirection = collisionDirection.clone().negate()
+              
+
+            // Define the distance to move the obstacle
+                var moveDistance = 3.0; // Adjust this value as needed
+                if (direction.x < 0){
+                    posBoxMesh.position.x += moveDistance;
+                }else{
+                    posBoxMesh.position.x -= moveDistance;
+                }
+
+            // Move the obstacle in the opposite direction
+            //  posBoxMesh.position.addScaledVector(oppositeDirection, moveDistance);
             }
         }
 
