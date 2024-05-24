@@ -106,6 +106,9 @@ function checkCollisions() {
     // mark victory and advance level
     var [isCrash, check] = objectInBound(car.collidable, collidableFuels)
     if (isCrash) {
+        var audio = new Audio("../effects/win-3-183975.mp3");
+        audio.play();
+        
         endLevel();
     }
 }

@@ -22,7 +22,7 @@ function Fuel() {
     var head = createTire( 10, 10, 5, 32, Colors.red, 0, 60, 0 );
     var headHighlight = createTire( 6, 6, 8, 32, Colors.golden, 0, 60, 0 );
 
-    var light = new THREE.PointLight( 0xffcc00, 1, 100 );
+    var light = new THREE.PointLight( 0xffcc00, 1000, 100 );
     light.position.set( 0, 60, 0 );
 
     this.mesh.add( slab );

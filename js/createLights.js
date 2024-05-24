@@ -35,8 +35,8 @@ function createLights() {
 	shadowLight.castShadow = true;
 
 	// define the visible area of the projected shadow
-	shadowLight.shadow.camera.left = -4000;
-	shadowLight.shadow.camera.right = 4000;
+	shadowLight.shadow.camera.left = -400;
+	shadowLight.shadow.camera.right = 400;
 	shadowLight.shadow.camera.top = 400;
 	shadowLight.shadow.camera.bottom = -400;
 	shadowLight.shadow.camera.near = 1;
@@ -44,8 +44,8 @@ function createLights() {
 
 	// define the resolution of the shadow; the higher the better,
 	// but also the more expensive and less performant
-	shadowLight.shadow.mapSize.width = 4048;
-	shadowLight.shadow.mapSize.height = 4048;
+	shadowLight.shadow.mapSize.width = 2048;
+	shadowLight.shadow.mapSize.height = 2048;
 
 	// to activate the lights, just add them to the scene
 

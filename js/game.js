@@ -54,40 +54,60 @@ function init_obstacle(){
 
 var isDay = true;   
 var fireflyCount = 300;
-var fireflies;
+var fireflies =   [];
 var clouds;
 
-function createFireFly(){
-    fireflies = [];  // Đảm bảo fireflies là một mảng
+function createFireFly(isDay){
+    // Đảm bảo fireflies là một mảng
     fireflyCount = 100;
-// Tạo hình cầu cho đom đóm
-    const geometry = new THREE.SphereGeometry(2, 16, 16);
-    const material = new THREE.MeshBasicMaterial({ color: 0xffff00 });
+    var firefly;
+    var light;
+    if(isDay !== true){
+        const geometry = new THREE.SphereGeometry(2, 16, 16);
+        const material = new THREE.MeshBasicMaterial({ color: 0xffff00 });
 
-    for (let i = 0; i < fireflyCount; i++) {
-    const firefly = new THREE.Mesh(geometry, material);
+        for (let i = 0; i < fireflyCount; i++) {
+        firefly = new THREE.Mesh(geometry, material);
+        
+        // Đặt vị trí ngẫu nhiên cho mỗi đom đóm
+        firefly.position.set(
+            (Math.random()*100 - 0.5) * 10,
+            (Math.random()*50 - 0.5) * 10,
+            (Math.random()*300 - 0.5) * 10
+        );
+        
+        // Tạo ánh sáng cho mỗi đom đóm
+        light = new THREE.PointLight(0xffff00, 1000, 100);
+        light.position.copy(firefly.position);
+        //   light.castShadow = true;
+        
+        // Thêm ánh sáng vào scene và đom đóm vào mảng quản lý
+
+        
+        fireflies.push({ mesh: firefly, light: light, direction: new THREE.Vector3(
+            (Math.random() - 0.5) * 0.02,
+            (Math.random() - 0.5) * 0.02,
+            (Math.random() - 0.5) * 0.02
+        )});
+        
+        scene.add(fireflies[i].mesh);
+        scene.add(fireflies[i].light);
+        
+        }
+    }else{
+        // console.log(fireflies)
+        for(let i = 0; i < fireflyCount; i++){
+            
     
-    // Đặt vị trí ngẫu nhiên cho mỗi đom đóm
-    firefly.position.set(
-        (Math.random()*100 - 0.5) * 10,
-        (Math.random()*50 - 0.5) * 10,
-        (Math.random()*300 - 0.5) * 10
-    );
+            scene.remove(fireflies[i].mesh);
+        
+            scene.remove(fireflies[i].light);
+            
+        }
+        fireflies = [];
+    }
+// Tạo hình cầu cho đom đóm
 
-  // Tạo ánh sáng cho mỗi đom đóm
-  const light = new THREE.PointLight(0xffff00, 1000, 100);
-  light.position.copy(firefly.position);
-//   light.castShadow = true;
-
-  // Thêm ánh sáng vào scene và đom đóm vào mảng quản lý
-  scene.add(light);
-  fireflies.push({ mesh: firefly, light: light, direction: new THREE.Vector3(
-    (Math.random() - 0.5) * 0.02,
-    (Math.random() - 0.5) * 0.02,
-    (Math.random() - 0.5) * 0.02
-  )});
-  scene.add(firefly);
-}
 }
 
 
@@ -126,6 +146,7 @@ function init() {
         // console.log(isDay);
         var text = document.getElementsByClassName("display_text");
         
+        
         if (isDay) {
             // console.log(clouds[0].material)
 
@@ -134,6 +155,8 @@ function init() {
             // scene.add(...clouds);
             shadowLight.remove(moon);
             shadowLight.add(sun);
+            createFireFly(isDay);
+
             
             hemisphereLight.visible = false;
             shadowLight.visible = true;
@@ -149,9 +172,8 @@ function init() {
                 text[i].style.color = 'black';
             }
         } else {
-
+            createFireFly(isDay);
             shadowLight.remove(sun);
-            createFireFly();
             nightLight.add(moon);
 
             hemisphereLight.visible = false;

@@ -16,7 +16,7 @@ function endLevel() {
     updateStatus();
     stopTimer();
 
-    setTimeout(createLevel, 30000);
+    setTimeout(createLevel, 1000);
 }
 
 function resetGame() {
@@ -65,6 +65,8 @@ function updateTimer() {
 
     if (time <= 0 || fuelLeft <= 0) {
 
+        var audio = new Audio("../effects/negative_beeps-6008.mp3");
+        audio.play();
         // const modalButton = document.getElementById('modalButton');
 
         var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'));
