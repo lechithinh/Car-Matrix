@@ -119,6 +119,8 @@
 	 	document.addEventListener("keyup", (e) => {
 			if (e.key === "ArrowUp" || e.key === "ArrowDown"){
 				// var audio = new Audio("effects/introduction-car-audio.mp3");
+				audio.currentTime = 0;
+
 				audio.pause();
 			}
 		})

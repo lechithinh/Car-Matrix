@@ -156,6 +156,7 @@
             let isMuted = true;
             var audio = new Audio("effects/logo-intro-sound-effectpresentation-sound-effectyoutube-logo-music-197348.mp3");
             // audio.play();
+            audio.loop = true;
             volumeButton.addEventListener('click', () => {
                 if (isMuted) {
                     // audioElement.muted = false;

@@ -64,8 +64,8 @@ function createScene() {
 
 	const controls = new OrbitControls( camera, renderer.domElement );
 	controls.update();
-
-	
+	// controls.minPolarAngle = 0;
+	// controls.maxPolarAngle = Math.PI/2;
 
 	// Define the size of the renderer; in this case,
 	// it will fill the entire screen
