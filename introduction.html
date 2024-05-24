@@ -77,21 +77,21 @@
             background-color: rgba(255, 255, 255, 0.0);
             padding: 15%;
             border-radius: 10px;
-    }
+        }
 
-    #volume-button {
-        background-color: #263218;
-        border: none;
-        color: white;
-        padding: 10px;
-        border-radius: 50%;
-        cursor: pointer;
-        font-size: 20px;
-    }
+        #volume-button {
+            background-color: #263218;
+            border: none;
+            color: white;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+        }
 
-    #volume-button:hover {
-        background-color: #263218;
-    }
+        #volume-button:hover {
+            background-color: #263218;
+        }
 
         @keyframes animate {
             0%,
@@ -154,13 +154,15 @@
             const volumeButton = document.getElementById('volume-button');
             // const audioElement = document.getElementById('audio-element');
             let isMuted = true;
-            var audio = new Audio("effects/introduction-car-audio.mp3");
+            var audio = new Audio("effects/logo-intro-sound-effectpresentation-sound-effectyoutube-logo-music-197348.mp3");
             // audio.play();
             volumeButton.addEventListener('click', () => {
                 if (isMuted) {
                     // audioElement.muted = false;
                     volumeButton.textContent = '🔊';
+                    audio.autoplay = true;
                     audio.play();
+             
                 } else {
                     // audioElement.muted = true;
                     volumeButton.textContent = '🔇';
