@@ -18,6 +18,32 @@
 			}
 		</script>
 
+		<style>
+			  /* Custom CSS for Game Over modal */
+			.modal-header {
+				background-color: #dc3545; /* Red background color */
+				color: #fff; /* White text color */
+				border-bottom: none; /* Remove default border */
+				text-align: center; /* Center-align the text */
+			}
+
+			.modal-title {
+				font-size: 36px; /* Increase font size */
+				margin: 0 auto; /* Center the title horizontally */
+			}
+
+			.modal-body {
+				/* Increase font size */
+				text-align: center;
+				color: #6c757d;
+				font-weight: bold;
+				font-size: 20px;
+			}
+
+
+		  </style>
+		  
+
 </head>
 
 <body>
@@ -25,23 +51,27 @@
 		Launch static backdrop modal
 	</button>
 
+	
+	<!-- Modal -->
+	<!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
 	<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h1 class="modal-title fs-5" id="staticBackdropLabel">Game Over</h1>
-				</div>
-				<div class="modal-body">
-					Play Again?
-				</div>
-				<div class="modal-footer">
-					<button type="button" id="homeButton" class="btn btn-secondary" data-bs-dismiss="modal">Back Home</button>
-					<button type="button" id="playButton" class="btn btn-primary">Play Again</button>
-				</div>
+		<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+			<h5 class="modal-title" id="staticBackdropLabel">Game Over</h5>
+			
+			</div>
+			<div class="modal-body">
+			<p>Try to get Station Fuel as soon as possible to win this game</p>
+			</div>
+			<div class="modal-footer">
+			<button type="button" id="homeButton" class="btn btn-secondary" data-bs-dismiss="modal">Back Home</button>
+			<button type="button" id="playButton" class="btn btn-primary">Try Again</button>
 			</div>
 		</div>
+		</div>
 	</div>
-
+  
 	<div id="world">
 		<div class="info">
 			<div id="toggleButton" class="form-check form-switch">
