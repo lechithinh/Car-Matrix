@@ -13,6 +13,8 @@ function createBox(dx, dy, dz, color, x, y, z, notFlatShading,texture_path) {
     }
     else {
         var mat = new THREE.MeshPhongMaterial({color:color, flatShading: notFlatShading != true});
+        // var mat = new THREE.MeshPhongMaterial({color:color, flatShading: notFlatShading != true,side:THREE.DoubleSide});
+
     }
     var box = new THREE.Mesh(geom, mat);
     box.castShadow = true;

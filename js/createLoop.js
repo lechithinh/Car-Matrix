@@ -20,14 +20,21 @@ import { collidableObstacle, clouds} from './game.js';
 function loop() {
     // handle car movement and collisions
     
-    car.update();
     
-   
+    var oldObjPos = new THREE.Vector3();
+    car.mesh.getWorldPosition(oldObjPos);
+    car.update();
+    var newObjPos = new THREE.Vector3();
+    car.mesh.getWorldPosition(newObjPos);
+
+    var delta = newObjPos.clone().sub(oldObjPos);
+
     // handle all growth animations
     animateGrow();
     animateShrink();
 
     camera.lookAt(car.mesh.position)
+    camera.position.add(delta);;
     
 	// render the scene
 	renderer.render(scene, camera);
