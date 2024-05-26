@@ -83,6 +83,21 @@
             }
         }
 
+        @media (max-width: 768px) {
+          .container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.0);
+            padding: 2rem;
+            border-radius: 10px;
+            height: 95%;
+        }
+
+        }
+
 
     </style>
 </head>
@@ -94,7 +109,7 @@
     <div class="container">
         <h2 class="pb-2 fw-bold">Game Level</h2>
     
-        <div class="row row-cols-1 row-cols-lg-3">
+        <div class="row row-cols-1 row-cols-lg-3 row-card">
           <div class="col" onclick="selectLevel('simple')">
             <div class="card">
               <img src="./images/simple.png" class="card-img-top">
