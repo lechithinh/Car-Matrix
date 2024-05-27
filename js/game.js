@@ -59,7 +59,7 @@ var clouds;
 
 function createFireFly(isDay){
     // Đảm bảo fireflies là một mảng
-    fireflyCount = 100;
+    fireflyCount = 20;
     var firefly;
     var light;
     if(isDay !== true){
