@@ -11,6 +11,7 @@ import { objectInBound } from './createLoop.js';
 import { collidableObstacle } from './game.js';
 import { box_idx } from './createLevel.js';
 import { ground } from './createGround.js';
+import { get_xywh } from './createLoop.js';
 // Color for car
 // console.log(Colors.blue)
 // console.log(Colors);
@@ -213,4 +214,8 @@ function createCar() {
     scene.add(car.mesh)
 }
 
-export {createCar,car}
+function get_car_pos(){
+    return get_xywh(car.collidable);
+}
+
+export {createCar,car,get_car_pos}

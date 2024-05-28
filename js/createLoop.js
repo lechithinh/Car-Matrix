@@ -171,4 +171,4 @@ function get_xywh(object) {  // TODO: annotate
     return { 'x': x, 'y': y, 'w': w, 'h': h };
 }
 
-export { loop, objectInBound }
+export { loop, objectInBound, get_xywh }

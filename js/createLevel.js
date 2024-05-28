@@ -13,6 +13,7 @@ import {createCones, endCones} from './createFence.js';
 import { startTimer } from './addUpdateLogic.js';
 import { createRocks,endRocks } from './createRock.js';
 
+
 var box_idx, tire_idx, tree_idx, fence_idx, rock_idx;
 var selected_obstacle= [] //'WoodenBox','Tree','Tire',
 var num_obstacle;
