@@ -92,3 +92,8 @@ Please organize your code following this structure:
 ```
 
 ## How to run
+- First you need install package of threejs
+- Step 1: Install Node.js. We'll need it to load manage dependencies and to run our build tool.
+- Step 2: npm install --save three
+- Step 3: npm install --save-dev vite
+- Step 4: npx vite
