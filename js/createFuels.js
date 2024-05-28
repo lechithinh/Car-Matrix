@@ -64,6 +64,7 @@ function createFuels() {
     while(distance < 1000){
         var new_x = Math.random() * ground.geometry.parameters.width/8 - 300;
         var new_y = Math.random() * ground.geometry.parameters.depth/8 - 200;
+
         point2.x = new_x;
         point2.y = new_y;
         distance = point1.distanceTo(point2);
