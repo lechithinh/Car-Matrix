@@ -4,7 +4,7 @@
     <img src="https://i.imgur.com/WmMnSRt.png" alt="Trường Đại học Công nghệ Thông tin | University of Information Technology">
   </a>
 </p>
-<h1 align="center"><b>ĐỒ HỌA MÁY TÍNH</b></h>
+<h1 align="center"><bCOMPUTER GRAPHICS</b></h>
 
 ## THÀNH VIÊN NHÓM
 
@@ -15,13 +15,13 @@
 | 3   | 21522706 | Nguyễn Minh Trí |  [MinhTri17](https://github.com/MinhTri17)                 | 21522706@gm.uit.edu.vn                  |
 
 
-## GIỚI THIỆU MÔN HỌC
+## COURSE INTRODUCTION
 
--   **Tên môn học:** Đồ họa máy tính
--   **Mã môn học:** CS105
--   **Mã lớp:** CS105.O21.KHCL
--   **Năm học:** HK1 (2023 - 2024)
--   **Giảng viên**: Prof: Cap Pham Đinh Thang
+-   **Course Name:** Computer Graphics
+-   **Course Code:** CS105
+-   **Class Code:** CS105.O21.KHCL
+-   **Academic Year::** Semester 1 (2023 - 2024)
+-   **Instructor**: Prof: Cap Pham Đinh Thang
 
 
 # Catrix Game Introduction
