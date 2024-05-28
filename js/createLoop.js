@@ -52,26 +52,28 @@ function loop() {
     if (isDay === false){
         for (let i = 0; i < fireflyCount; i++) {
             const firefly = fireflies[i];
+            firefly.mesh.position.x += 2;
+            firefly.mesh.position.y += 1;
     
             // Nếu đom đóm đi quá xa, đổi hướng
-            if (firefly.mesh.position.x >= 100  && firefly.mesh.position.y >= 100) {
-              firefly.mesh.position.x -= 2;
-            //   firefly.mesh.position.z -= 3;
-              firefly.light.position.x -= 2;
-            //   firefly.light.position.z -= 3
-            }else if(firefly.mesh.position.x < 100 && firefly.mesh.position.y < 100){
-                firefly.mesh.position.x += 2;
-                firefly.light.position.x += 2;
-            }
-            else if(firefly.mesh.position.y >= 100 && firefly.mesh.position.x >= 100){
-                // firefly.mesh.position.x += 2;
-                firefly.mesh.position.y -= 3;
-                // firefly.light.position.x += 2;
-                firefly.light.position.y -= 3
-            }else if(firefly.mesh.position.y < 100 && firefly.mesh.position.x < 100){
-                firefly.mesh.position.y += 3;
-                firefly.light.position.y += 3
-            }
+            // if (firefly.mesh.position.x >= 100  && firefly.mesh.position.y >= 100) {
+            //   firefly.mesh.position.x -= 2;
+            // //   firefly.mesh.position.z -= 3;
+            //   firefly.light.position.x -= 2;
+            // //   firefly.light.position.z -= 3
+            // }else if(firefly.mesh.position.x < 100 && firefly.mesh.position.y < 100){
+            //     firefly.mesh.position.x += 2;
+            //     firefly.light.position.x += 2;
+            // }
+            // else if(firefly.mesh.position.y >= 100 && firefly.mesh.position.x >= 100){
+            //     // firefly.mesh.position.x += 2;
+            //     firefly.mesh.position.y -= 3;
+            //     // firefly.light.position.x += 2;
+            //     firefly.light.position.y -= 3
+            // }else if(firefly.mesh.position.y < 100 && firefly.mesh.position.x < 100){
+            //     firefly.mesh.position.y += 3;
+            //     firefly.light.position.y += 3
+            // }
           }
     }
 
