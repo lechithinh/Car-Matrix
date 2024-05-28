@@ -10,7 +10,7 @@ import { scene } from "./createScene.js";
 import { objectInBound } from './createLoop.js';
 import { collidableObstacle } from './game.js';
 import { box_idx } from './createLevel.js';
-
+import { ground } from './createGround.js';
 // Color for car
 // console.log(Colors.blue)
 // console.log(Colors);
@@ -22,6 +22,9 @@ var doorColor = Colors.brown;
 var handleColor = Colors.brownDark;
 
 var car; 
+// var flag1 = false;
+var flag2 = false;
+
 function Car() {
 
     var direction = new THREE.Vector3(1., 0., 0.);
@@ -112,6 +115,9 @@ function Car() {
 
         // disallow travel through trees
         var [isCrash, posBoxMesh] = objectInBound(this.collidable, collidableObstacle);
+        // var flag1 = false;
+        // var flag2 = false;
+
         if ( isCrash && is_moving) {
             while (objectInBound(this.collidable, collidableObstacle)[0]) {
                 this.mesh.position.addScaledVector(direction, -currentSpeed);
@@ -119,8 +125,12 @@ function Car() {
             }
             currentSpeed = 0;
             var audio = new Audio("../effects/clank-car-crash-collision-6206.mp3")
-            audio.play()
             
+            if(flag2 == false){
+                audio.play();
+                flag2 = true;
+            }
+
             is_moving = false;
             if(posBoxMesh !== null){
                 // console.log(posBoxMesh)
@@ -141,7 +151,10 @@ function Car() {
             //  posBoxMesh.position.addScaledVector(oppositeDirection, moveDistance);
             }
         }
-
+        if (!isCrash && is_moving){
+            
+            flag2 = false;
+        }
         // update speed according to acceleration
         if (movement.forward) {
             currentSpeed = Math.min(maxSpeed, currentSpeed + acceleration);
@@ -181,7 +194,8 @@ function Car() {
     this.collidable = body;
 
     this.reset = function() {
-        car.mesh.position.set( -300, 25, -150);
+        // ground.geometry.parameters.height
+        car.mesh.position.set(250, 25, -150);
         direction = new THREE.Vector3(1., 0., 0.);
         currentSpeed = 0;
         movement['forward'] = movement['backward'] = false

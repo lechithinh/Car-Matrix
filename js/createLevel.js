@@ -20,7 +20,7 @@ var num_obstacle;
 function level_obstacle(level){
     if(level == 'simple'){
         selected_obstacle.push('Tree');
-        num_obstacle = 5;
+        num_obstacle = 15;
     }
     else if (level == 'medium'){
         selected_obstacle.push('Tree','WoodenBox');
@@ -78,7 +78,7 @@ const create_obstacle = {
     'Rock': (start) => {
         if (start){
             rock_idx = selected_obstacle.indexOf('Rock');
-            createRocks();
+            createRocks(num_obstacle);
         }
         else{
             endRocks();

@@ -128,6 +128,8 @@ function init() {
 
 
     var { hemisphereLight, shadowLight, nightLight} = createLights();
+    // var helper = new THREE.CameraHelper(shadowLight.shadow.camera);
+    // scene.add(helper);
     scene.add(hemisphereLight);
     scene.add(shadowLight);
     scene.add(nightLight);
