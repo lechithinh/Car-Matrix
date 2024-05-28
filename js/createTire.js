@@ -7,7 +7,7 @@ import { Colors } from './color.js';
 import { tire_idx } from './createLevel.js';
 import { scene } from './createScene.js';
 import { startGrowth, startShrink } from './addAnimation.js';
-
+import { ground } from './createGround.js';
 
 var tires;
 var collidable_obs;

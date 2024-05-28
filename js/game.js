@@ -59,7 +59,9 @@ var clouds;
 
 function createFireFly(isDay){
     // Đảm bảo fireflies là một mảng
-    fireflyCount = 50;
+
+    fireflyCount = 20;
+
     var firefly;
     var light;
     if(isDay !== true){
@@ -128,6 +130,8 @@ function init() {
 
 
     var { hemisphereLight, shadowLight, nightLight} = createLights();
+    // var helper = new THREE.CameraHelper(shadowLight.shadow.camera);
+    // scene.add(helper);
     scene.add(hemisphereLight);
     scene.add(shadowLight);
     scene.add(nightLight);
