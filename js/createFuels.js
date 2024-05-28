@@ -5,7 +5,7 @@ import { createTire } from './createObjects.js';
 import { scene } from './createScene.js';
 import {collidableFuels} from './game.js'
 import { startGrowth, startShrink } from './addAnimation.js';
-
+import { ground } from './createGround.js';
 var fuel;
 function Fuel() {
     this.mesh = new THREE.Object3D();
@@ -49,8 +49,9 @@ function createFuel(x, z) {
 
 
 function createFuels() {
-    var x = Math.random() * 600 - 300;
-    var y = Math.random() * 400 - 200;
+    var x = Math.random() * ground.geometry.parameters.width/8 - 300;
+    var y = Math.random() * ground.geometry.parameters.depth/8 - 200;
+    console.log(x,y);
     createFuel(x, y);
     startGrowth(fuel.mesh, 50, 10, 1);
 }

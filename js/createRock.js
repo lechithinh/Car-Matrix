@@ -4,14 +4,15 @@ import {obstacles,collidableObstacle, init_obstacle } from "./game.js";
 import { car } from './createCar.js';
 import { fuel } from './createFuels.js';
 import { scene } from './createScene.js';
-import {rock_idx, num_obstacle} from './createLevel.js';
+import {rock_idx} from './createLevel.js';
 import { startGrowth,startShrink } from './addAnimation.js';
+import { ground } from './createGround.js';
 var rocks;
 var collidable_obs;
 var x, z, scale, rotate, delay;
 var i;
-var percentage = num_obstacle / 4;
-
+// var percentage = num_obstacle / 4;
+// console.log(num_obstacle);
 const loader = new GLTFLoader();
 // loader.load('resource/model/low_polygon_stylized_rock_free/scene.gltf',function(gltf){
 //     scene.add(gltf.scene);
@@ -69,32 +70,35 @@ function loadModel(url){
     });
 }
 let boundingBox;
-async function createRocks(){
+async function createRocks(num_obstacle){
     collidable_obs = [];
     rocks = [];
-    
+    var percentage = num_obstacle / 4;
     for (i =0;i<num_obstacle;i++){
         // var rock = loader.load('resource/model/low_polygon_stylized_rock_free/scene.gltf',onLoad);
 
         var rock = await loadModel('resource/model/low_polygon_stylized_rock_free/scene.gltf').then((result) =>{
             rocks.push(result);
             const model = result.scene;
-            
+        
             if (i <= percentage){
-                x = Math.random() * 2000 - 300;
-                z = Math.random() * 1700 - 200;
+                console.log( ground.geometry.parameters.width /2);
+                console.log( ground.geometry.parameters.depth /2);
+
+                x = Math.random() *  ground.geometry.parameters.width /4 - 500;
+                z = Math.random() *  ground.geometry.parameters.depth /4 - 500;
             }else if(i > percentage && i <= 2 * percentage){
-                x = -(Math.random() * 2000 - 300);
-                z = -(Math.random() * 1700 - 200);
+                x = -(Math.random() *ground.geometry.parameters.width /4 - 500);
+                z = -(Math.random() * ground.geometry.parameters.depth /4 - 500);
             }else if ((i > 2 * percentage) && (i <= 3 * percentage)){
-                x = (Math.random() * 2000 - 300);
-                z = -(Math.random() * 1700 - 200);
+                x = (Math.random() *ground.geometry.parameters.width /4 - 500);
+                z = -(Math.random() * ground.geometry.parameters.depth /4 - 500);
             }else if ((i > 3 * percentage) && (i <= 4 * percentage)){
-                x = -(Math.random() * 2000 - 300);
-                z = (Math.random() * 1700 - 200);
+                x = -(Math.random() * ground.geometry.parameters.width /4 - 500);
+                z = (Math.random() * ground.geometry.parameters.depth /4 - 500);
             }else{
-                x = (Math.random() * 2000 - 300);
-                z = (Math.random() * 1700 - 200);
+                x = (Math.random() * ground.geometry.parameters.width /4 - 500);
+                z = (Math.random() * ground.geometry.parameters.depth /4 - 500);
             }
             // console.log(x,z);
             scale = Math.random() * 1 + 0.5;

@@ -9,7 +9,7 @@ import { scene } from "./createScene.js";
 
 var ground;
 function createGround() {
-    var ground = createBox( 20000, 20, 20000, Colors.greenDark, 0, -10, 0 );
+    ground = createBox( 20000, 20, 20000, Colors.greenDark, 0, -10, 0 );
     scene.add(ground);
 }
 export {createGround, ground}

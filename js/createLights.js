@@ -26,7 +26,7 @@ function createLights() {
 
 	
 	// Set the direction of the light
-	shadowLight.position.set(150, 350, 350);
+	shadowLight.position.set(150, 550, 550);
 	
 
 	// shadowLight.position.set(100, 100, 100);
