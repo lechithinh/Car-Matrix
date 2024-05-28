@@ -97,7 +97,9 @@ Please organize your code following this structure:
 - Step 2: npm install --save three
 - Step 3: npm install --save-dev vite
 - Step 4: npx vite
+  
 However, we have installed all the necessary files to run the above code, so you only need to clone the code from GitHub, install the Go Live extension
+
 - **Step 1: Install the Go Live Extension in Visual Studio Code**
 - Open Visual Studio Code (VS Code).
 - Go to the Extensions view by clicking the square icon on the sidebar or pressing Ctrl+Shift+X
@@ -107,4 +109,5 @@ However, we have installed all the necessary files to run the above code, so you
 - In VS Code, navigate to the introduction.html file in your project directory.
 - Right-click on the introduction.html file.
 - Select "Open with Live Server" from the context menu.
+
 After following these steps, your browser will automatically open the introduction.html page, and you will be able to see the results of your code running live.
