@@ -20,7 +20,7 @@ var HEIGHT, WIDTH;
 
 function createScene() {
 	// use them to set up the aspect ratio of the camera
-	// and the size of the renderer.
+	// and the size of the renderer.fire
 	HEIGHT = window.innerHeight;
 	WIDTH = window.innerWidth;
 
@@ -42,7 +42,8 @@ function createScene() {
 		farPlane
 		);
 	
-	
+		var axesHelper = new THREE.AxesHelper(100); // Tham số 5 xác định chiều dài của các trục
+		scene.add(axesHelper);
 
 	// Set the position of the camera
 	// console.log(car)
