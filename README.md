@@ -6,9 +6,9 @@
 </p>
 <h1 align="center"><bCOMPUTER GRAPHICS</b></h>
 
-## THÀNH VIÊN NHÓM
+## GROUP MEMBERS
 
-| STT |   MSSV   |       Họ và Tên |                     Github                                 |            Email                        |
+| STT |Student ID|       Full Names |                     Github                                 |            Email                        |
 | --- | :------: | --------------: |  --------------------------------------------------------: | ---------------------------------------:|
 | 1   | 21522634 |  Lê Chí Thịnh   |  [lechithinh](https://github.com/lechithinh)               | 21522634@gm.uit.edu.vn                  |
 | 2   | 21522621 | Huỳnh Công Thiện|  [HuynhThien1](https://github.com/HuynhThien1)             | 21522621@gm.uit.edu.vn                  |
@@ -51,7 +51,7 @@ Here are the techs we implemented for this project
 Clone the repository
 
 ```sh
-[git clone https://github.com/lechithinh/Image-Retrival.git](https://github.com/lechithinh/Car-Matrix.git)
+git clone https://github.com/lechithinh/Car-Matrix.git
 ```
 
 ## Structure
