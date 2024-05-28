@@ -6,6 +6,8 @@ import { scene } from './createScene.js';
 import {collidableFuels} from './game.js'
 import { startGrowth, startShrink } from './addAnimation.js';
 import { ground } from './createGround.js';
+import { get_xywh } from './createLoop.js';
+import { get_car_pos } from './createCar.js';
 var fuel;
 function Fuel() {
     this.mesh = new THREE.Object3D();
@@ -49,9 +51,27 @@ function createFuel(x, z) {
 
 
 function createFuels() {
+    var car_pos = get_car_pos();
+    // var fuel_pos = get_xywh(fuel.collidable);
     var x = Math.random() * ground.geometry.parameters.width/8 - 300;
     var y = Math.random() * ground.geometry.parameters.depth/8 - 200;
+    let point1 = new THREE.Vector2(car_pos.x,car_pos.y);
     console.log(x,y);
+    console.log(car_pos.x,car_pos.y);
+    let point2 = new THREE.Vector2(x,y);
+    let distance = point1.distanceTo(point2);
+    console.log(distance);
+    while(distance < 1000){
+        new_x = Math.random() * ground.geometry.parameters.width/8 - 300;
+        new_y = Math.random() * ground.geometry.parameters.depth/8 - 200;
+        point2.x = new_x;
+        point2.y = new_y;
+        distance = point1.distanceTo(point2);
+
+    }
+
+    // console.log(x,y);
+
     createFuel(x, y);
     startGrowth(fuel.mesh, 50, 10, 1);
 }
