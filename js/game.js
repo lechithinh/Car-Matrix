@@ -59,7 +59,7 @@ var clouds;
 
 function createFireFly(isDay){
     // Đảm bảo fireflies là một mảng
-    fireflyCount = 100;
+    fireflyCount = 50;
     var firefly;
     var light;
     if(isDay !== true){
@@ -148,11 +148,7 @@ function init() {
         
         
         if (isDay) {
-            // console.log(clouds[0].material)
-
-            // scene.remove(...clouds)
-            // clouds = createGroupOfCloud(5, 50, 0xffffff);
-            // scene.add(...clouds);
+            
             shadowLight.remove(moon);
             shadowLight.add(sun);
             createFireFly(isDay);

@@ -110,6 +110,8 @@ function Car() {
         this.mesh.position.addScaledVector(direction, currentSpeed);
         this.mesh.updateMatrixWorld();
 
+        console.log(direction )
+
         // disallow travel through trees
         var [isCrash, posBoxMesh] = objectInBound(this.collidable, collidableObstacle);
         if ( isCrash && is_moving) {
@@ -126,19 +128,22 @@ function Car() {
                 // console.log(posBoxMesh)
               // Calculate the opposite direction vector based on the collision direction
               var collisionDirection = direction.clone().normalize();
-              var oppositeDirection = collisionDirection.clone().negate()
-              
+              var oppositeDirection = collisionDirection.clone().negate();
 
             // Define the distance to move the obstacle
-                var moveDistance = 3.0; // Adjust this value as needed
-                if (direction.x < 0){
-                    posBoxMesh.position.x += moveDistance;
-                }else{
-                    posBoxMesh.position.x -= moveDistance;
-                }
-
-            // Move the obstacle in the opposite direction
-            //  posBoxMesh.position.addScaledVector(oppositeDirection, moveDistance);
+                // var moveDistance = 30.0; // Adjust this value as needed
+                console.log("Directon: ", direction)
+                var combineMoveX, combineMoveZ;
+        // Khoảng cách an toàn để tránh chồng lên  
+                    var moveDistance = 20;
+                    if (direction.x !== 0) {
+                        posBoxMesh.position.x += direction.x * moveDistance;
+                    }
+                    
+                    // Tính toán di chuyển theo hướng z
+                    if (direction.z !== 0) {
+                        posBoxMesh.position.z += direction.z * moveDistance;
+                    }       
             }
         }
 
