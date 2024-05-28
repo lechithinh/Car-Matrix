@@ -42,8 +42,8 @@ function createScene() {
 		farPlane
 		);
 	
-		var axesHelper = new THREE.AxesHelper(100); // Tham số 5 xác định chiều dài của các trục
-		scene.add(axesHelper);
+		// var axesHelper = new THREE.AxesHelper(100); // Tham số 5 xác định chiều dài của các trục
+		// scene.add(axesHelper);
 
 	// Set the position of the camera
 	// console.log(car)

@@ -56,11 +56,11 @@ function startTimer() {
 }
 
 function updateTimer() {
-    time -= 0;
+    time -= 1;
     updateTimeDisplay();
 
     // Added in step 2
-    fuelLeft -= 0;
+    fuelLeft -= 5;
     updateFuelDisplay();
 
     if (time <= 0 || fuelLeft <= 0) {
