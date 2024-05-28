@@ -87,12 +87,12 @@ function Car() {
     this.mesh.add(backLeftTire);
     this.mesh.add(backRightTire);
 
-	var headLightLeftLight = new THREE.PointLight( 0xffcc00, 1000, 100 );
+	var headLightLeftLight = new THREE.PointLight( 0xffcc00, 10, 100 );
     headLightLeftLight.castShadow = true;
     headLightLeftLight.position.set( 50, 5, 15 );
     this.mesh.add( headLightLeftLight );
 
-    var headLightRightLight = new THREE.PointLight( 0xffcc00, 1000, 100 );
+    var headLightRightLight = new THREE.PointLight( 0xffcc00, 10, 100 );
     headLightRightLight.castShadow =true;
     headLightRightLight.position.set( 50, 5, -15 );
     this.mesh.add( headLightRightLight );
@@ -114,7 +114,7 @@ function Car() {
         this.mesh.position.addScaledVector(direction, currentSpeed);
         this.mesh.updateMatrixWorld();
 
-        console.log(direction )
+        // console.log(direction )
 
         // disallow travel through trees
         var [isCrash, posBoxMesh] = objectInBound(this.collidable, collidableObstacle);

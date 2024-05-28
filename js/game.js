@@ -150,7 +150,11 @@ function init() {
         // console.log(isDay);
         var text = document.getElementsByClassName("display_text");
         
+        car.mesh.children[20].intensity = 0;
+        car.mesh.children[20].distance = 0;
         
+        car.mesh.children[21].intensity = 0;
+        car.mesh.children[21].distance = 0;
         if (isDay) {
             
             shadowLight.remove(moon);
